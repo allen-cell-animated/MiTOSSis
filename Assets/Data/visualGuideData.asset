@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a5e097f022242408291d9d3bc45ba4, type: 3}
+  m_Name: visualGuideData
+  m_EditorClassIdentifier: 
+  structureData:
+  - structureName: Microtubules
+    infoImage: {fileID: 21300000, guid: b8bb2ed4650f74cd6a5f0ac7a5d83354, type: 3}
+    description: The cytoskeleton is made of fiber networks that maintain cell shape
+      and morph it in order to move and divide.
+    nameWidth: 80
+  - structureName: Nucleus
+    infoImage: {fileID: 21300000, guid: 1beb90945af2540feaa2f471bc8b8f62, type: 3}
+    description: The nucleus is a large central compartment that separates DNA from
+      the rest of the cell.
+    nameWidth: 54
+  - structureName: Mitochondria
+    infoImage: {fileID: 21300000, guid: 9c5c176ee43304d6fa5a97048324d896, type: 3}
+    description: Mitochondria  are descended from bacteria and break down food into
+      cellular energy molecules.
+    nameWidth: 108
+  - structureName: Endoplasmic Reticulum (ER)
+    infoImage: {fileID: 21300000, guid: c5809155623914c7aa0fc375aa66e7a2, type: 3}
+    description: The ER produces new molecules.
+    nameWidth: 118
+  - structureName: Golgi Apparatus
+    infoImage: {fileID: 21300000, guid: 0da75a18465144641b8deaf770084a71, type: 3}
+    description: The Golgi Apparatus distributes new molecules.
+    nameWidth: 90
