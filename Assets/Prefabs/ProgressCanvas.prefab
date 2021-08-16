@@ -983,14 +983,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d796c5c5b96b49b7908e676cefa8b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: {fileID: 0}
-  selectedER: {fileID: 0}
-  selectedGolgi: {fileID: 0}
-  selectedMTs: {fileID: 0}
-  selectedMitos: {fileID: 0}
-  titleLabel: {fileID: 0}
-  backLabel: {fileID: 0}
-  nextLabel: {fileID: 0}
+  time: {fileID: 114256383639476198}
+  selectedER: {fileID: 1233429247976428}
+  selectedGolgi: {fileID: 1585626408038662}
+  selectedMTs: {fileID: 1589267168717556}
+  selectedMitos: {fileID: 1528311121428872}
+  titleLabel: {fileID: 114850914443781936}
+  backLabel: {fileID: 1662074455553204}
+  nextLabel: {fileID: 1803820235611220}
 --- !u!223 &223541564279792628
 Canvas:
   m_ObjectHideFlags: 0

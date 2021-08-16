@@ -847,7 +847,7 @@ public class OVROverlay : MonoBehaviour
 
 		// Backward compatibility
 		if (rend != null && textures[0] == null)
-			textures[0] = rend.material.mainTexture;
+			textures[0] = rend.sharedMaterial.mainTexture;
 
 		SetupEditorPreview();
 	}

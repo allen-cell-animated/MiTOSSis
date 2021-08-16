@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureData:
   - structureName: Microtubules
-    infoImage: {fileID: 21300000, guid: b8bb2ed4650f74cd6a5f0ac7a5d83354, type: 3}
+    infoImage: {fileID: 21300000, guid: 8ab36cfe7597c42e1aa6af4b7824685d, type: 3}
     description: The cytoskeleton is made of fiber networks that maintain cell shape
       and morph it in order to move and divide.
     nameWidth: 80
   - structureName: Nucleus
-    infoImage: {fileID: 21300000, guid: 1beb90945af2540feaa2f471bc8b8f62, type: 3}
+    infoImage: {fileID: 21300000, guid: 2cfaa1d26a80e4c5399cfdcdd7ddcc53, type: 3}
     description: The nucleus is a large central compartment that separates DNA from
       the rest of the cell.
     nameWidth: 54
   - structureName: Mitochondria
-    infoImage: {fileID: 21300000, guid: 9c5c176ee43304d6fa5a97048324d896, type: 3}
+    infoImage: {fileID: 21300000, guid: 187e9e540fb7046828971c921571ff27, type: 3}
     description: Mitochondria  are descended from bacteria and break down food into
       cellular energy molecules.
     nameWidth: 108
   - structureName: Endoplasmic Reticulum (ER)
-    infoImage: {fileID: 21300000, guid: c5809155623914c7aa0fc375aa66e7a2, type: 3}
+    infoImage: {fileID: 21300000, guid: 8741dac0f391649209c87f04c7c9a4ed, type: 3}
     description: The ER produces new molecules.
     nameWidth: 118
   - structureName: Golgi Apparatus
-    infoImage: {fileID: 21300000, guid: 0da75a18465144641b8deaf770084a71, type: 3}
+    infoImage: {fileID: 21300000, guid: 1ea7f9d767a5b495fabfb66322c74f97, type: 3}
     description: The Golgi Apparatus distributes new molecules.
     nameWidth: 90
