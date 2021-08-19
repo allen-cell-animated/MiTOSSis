@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRTK;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class ThrowableCell : VRTK_InteractableObject 
+public class ThrowableCell : MonoBehaviour 
 {
     [Header("Throwable Cell Settings")]
 
@@ -14,6 +14,8 @@ public class ThrowableCell : VRTK_InteractableObject
     public float alignedMitosisScale;
     public Target attachedTarget;
     public float lastSpawnTime;
+    public bool isGrabbable = true;
+    public bool isGrabbed;
 
     MitosisGameManager _gameManager;
     MitosisGameManager gameManager
@@ -88,6 +90,12 @@ public class ThrowableCell : VRTK_InteractableObject
         }
     }
 
+    public void AttachToController (object args)
+    {
+        UIManager.Instance.Log(args.ToString());
+        // transform.SetParent(args.interactor.transform.GetChild(0));
+    }
+
     void OnCollisionEnter (Collision collision)
     {
         Target target = collision.gameObject.GetComponent<Target>();
@@ -102,18 +110,6 @@ public class ThrowableCell : VRTK_InteractableObject
                 target.Bounce();
             }
         }
-    }
-
-    public override void Grabbed (VRTK_InteractGrab currentGrabbingObject = null)
-    {
-        base.Grabbed( currentGrabbingObject );
-        ReleaseFromTarget();
-    }
-
-    public override void Ungrabbed (VRTK_InteractGrab previousGrabbingObject = null)
-    {
-        base.Ungrabbed( previousGrabbingObject );
-        ReleaseFromTarget();
     }
 
     void BindToTarget (Target target)

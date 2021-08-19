@@ -70,7 +70,7 @@ public class VisualGuideManager : MonoBehaviour
 
     public void StartGame (string structureName)
     {
-        Debug.Log( "-------start game with " + structureName );
+        UIManager.Instance.Log( "Start game with " + structureName );
         currentMode = VisualGuideGameMode.Play;
 
         UIManager.Instance.EnterPlayMode( data.structureData.Find( s => s.structureName == structureName ) );
@@ -89,7 +89,7 @@ public class VisualGuideManager : MonoBehaviour
         GameObject prefab = Resources.Load( "MitosisGame" ) as GameObject;
         if (prefab == null)
         {
-            Debug.LogWarning( "Couldn't load prefab for MitosisGame" );
+            UIManager.Instance.Log( "WARNING: Couldn't load prefab for MitosisGame" );
             return null;
         }
         return (Instantiate( prefab ) as GameObject).GetComponent<MitosisGameManager>();

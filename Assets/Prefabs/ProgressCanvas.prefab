@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 223541564279792628}
   - component: {fileID: 114270245623106132}
   - component: {fileID: 114568917923114010}
-  - component: {fileID: 114444102548485740}
+  - component: {fileID: 4140473974051664324}
   - component: {fileID: 95924842964863734}
   m_Layer: 5
   m_Name: ProgressCanvas
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114444102548485740
+--- !u!114 &4140473974051664324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1060,11 +1060,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1306044006312270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1518a5e598c7da244bc4850d3ae63354, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickOnPointerCollision: 0
-  autoActivateWithinDistance: 0
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!95 &95924842964863734
 Animator:
   serializedVersion: 3

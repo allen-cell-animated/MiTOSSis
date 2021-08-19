@@ -29,36 +29,10 @@ public class ProgressCanvas : MonoBehaviour
 
     public void SetSelected (string structureName, bool selected)
     {
-        switch (structureName)
-        {
-            case "Endoplasmic Reticulum (ER)":
-                selectedER.SetActive( true );
-                selectedGolgi.SetActive( false );
-                selectedMTs.SetActive( false );
-                selectedMitos.SetActive( false );
-                return;
-
-            case "Golgi Apparatus":
-                selectedER.SetActive( false );
-                selectedGolgi.SetActive( true );
-                selectedMTs.SetActive( false );
-                selectedMitos.SetActive( false );
-                return;
-
-            case "Microtubules":
-                selectedER.SetActive( false );
-                selectedGolgi.SetActive( false );
-                selectedMTs.SetActive( true );
-                selectedMitos.SetActive( false );
-                return;
-
-            case "Mitochondria":
-                selectedER.SetActive( false );
-                selectedGolgi.SetActive( false );
-                selectedMTs.SetActive( false );
-                selectedMitos.SetActive( true );
-                return;
-        }
+        selectedER.SetActive( structureName == "Endoplasmic Reticulum (ER)" );
+        selectedGolgi.SetActive( structureName == "Golgi Apparatus" );
+        selectedMTs.SetActive( structureName == "Microtubules" );
+        selectedMitos.SetActive( structureName == "Mitochondria" );
     }
 
     public void SetButtonLabel (bool next)

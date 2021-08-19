@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VRTK;
+using System;
 
 public class UIManager : MonoBehaviour 
 {
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject playbutton;
     public Text nextStructureLabel;
     public CountdownCanvas countdownCanvas;
+    public Text debugText;
 
     static UIManager _Instance;
     public static UIManager Instance
@@ -35,25 +37,25 @@ public class UIManager : MonoBehaviour
 
     void Update ()
     {
-        if (Input.GetKeyUp( KeyCode.X ) && VisualGuideManager.Instance.currentMode != VisualGuideGameMode.Lobby)
-        {
-            VisualGuideManager.Instance.ReturnToLobby();
-        }
+        // if (Input.GetKeyUp( KeyCode.X ) && VisualGuideManager.Instance.currentMode != VisualGuideGameMode.Lobby)
+        // {
+        //     VisualGuideManager.Instance.ReturnToLobby();
+        // }
 
-        if (Input.GetKeyUp( KeyCode.C ))
-        {
-            //toggle color in integrated cell in lobby
-        }
+        // if (Input.GetKeyUp( KeyCode.C ))
+        // {
+        //     //toggle color in integrated cell in lobby
+        // }
 
-        if (Input.GetKeyUp( KeyCode.Q ))
-        {
-            //toggle cell placement in game
-        }
+        // if (Input.GetKeyUp( KeyCode.Q ))
+        // {
+        //     //toggle cell placement in game
+        // }
 
-        if (Input.GetKey( KeyCode.A ) && Input.GetKey( KeyCode.I ) && Input.GetKey( KeyCode.C ) && Input.GetKey( KeyCode.S ))
-        {
-            leaderboard.ClearAllRankings();
-        }
+        // if (Input.GetKey( KeyCode.A ) && Input.GetKey( KeyCode.I ) && Input.GetKey( KeyCode.C ) && Input.GetKey( KeyCode.S ))
+        // {
+        //     leaderboard.ClearAllRankings();
+        // }
     }
 
     public void UpdateTime (float startTime)
@@ -100,6 +102,7 @@ public class UIManager : MonoBehaviour
 
     public void StartTimer ()
     {
+        UIManager.Instance.Log( "UIManager: start timer" );
         VisualGuideManager.Instance.currentGameManager.StartTimer();
         progressCanvas.gameObject.SetActive( true );
     }
@@ -126,5 +129,13 @@ public class UIManager : MonoBehaviour
     public void Play ()
     {
         VisualGuideManager.Instance.SelectNextStructureAndPlay();
+    }
+
+    public void Log (string message)
+    {
+        if (debugText.gameObject.active)
+        {
+            debugText.text += message + "\n";
+        }
     }
 }

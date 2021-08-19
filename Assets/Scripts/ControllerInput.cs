@@ -16,6 +16,8 @@ public class ControllerInput : MonoBehaviour
     public bool touchingRight;
     public bool touchingLeft;
     public bool laserDisabledUnlessPointingAtUI;
+    public Transform leftController;
+    public Transform rightController;
 
     static ControllerInput _Instance;
     public static ControllerInput Instance

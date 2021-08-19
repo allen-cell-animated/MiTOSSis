@@ -83,7 +83,7 @@ public class MitosisGameManager : MonoBehaviour
             prefab = Resources.Load( structureName + "/" + throwableNames[i] + "Cell" ) as GameObject;
             if (prefab == null)
             {
-                Debug.LogWarning( "Couldn't load prefab for " + structureName + " " + throwableNames[i] );
+                UIManager.Instance.Log( "WARNING: Couldn't load prefab for " + structureName + " " + throwableNames[i] );
                 continue;
             }
 
@@ -121,7 +121,7 @@ public class MitosisGameManager : MonoBehaviour
             {
                 if (throwableCell != null && throwableCell.attachedTarget == null 
                     && Time.time - throwableCell.lastSpawnTime > 2f && (!throwableCell.isMoving || throwableCell.transform.position.y < -1f)
-                    && !throwableCell.IsGrabbed() && ThrowableIsOutOfBounds( throwableCell.transform ))
+                    && !throwableCell.isGrabbed && ThrowableIsOutOfBounds( throwableCell.transform ))
                 {
                     if (destroyWhenOutOfBounds)
                     {
@@ -144,13 +144,13 @@ public class MitosisGameManager : MonoBehaviour
         GameObject targetPrefab = Resources.Load( "Target" ) as GameObject;
         if (targetPrefab == null)
         {
-            Debug.LogWarning( "Couldn't load prefab for Target" );
+            UIManager.Instance.Log( "WARNING: Couldn't load prefab for Target" );
             return;
         }
         GameObject arrowPrefab = Resources.Load( "Arrow" ) as GameObject;
         if (targetPrefab == null)
         {
-            Debug.LogWarning( "Couldn't load prefab for Arrow" );
+            UIManager.Instance.Log( "WARNING: Couldn't load prefab for Arrow" );
             return;
         }
 
@@ -189,7 +189,7 @@ public class MitosisGameManager : MonoBehaviour
         GameObject prefab = Resources.Load( "Wall" ) as GameObject;
         if (prefab == null)
         {
-            Debug.LogWarning( "Couldn't load prefab for Wall" );
+            UIManager.Instance.Log( "WARNING: Couldn't load prefab for Wall" );
             return;
         }
 

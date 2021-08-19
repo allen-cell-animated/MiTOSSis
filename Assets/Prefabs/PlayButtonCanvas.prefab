@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 223213786466393360}
   - component: {fileID: 114826632445934846}
   - component: {fileID: 114540551349219980}
-  - component: {fileID: 114063076081519206}
+  - component: {fileID: 2291541030316098829}
   - component: {fileID: 95157262348418906}
   m_Layer: 5
   m_Name: PlayButtonCanvas
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114063076081519206
+--- !u!114 &2291541030316098829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,11 +112,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124567319030908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1518a5e598c7da244bc4850d3ae63354, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickOnPointerCollision: 0
-  autoActivateWithinDistance: 0
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!95 &95157262348418906
 Animator:
   serializedVersion: 3
