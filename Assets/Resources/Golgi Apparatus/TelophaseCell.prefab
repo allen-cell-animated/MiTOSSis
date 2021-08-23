@@ -335,10 +335,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsRadius: 0
-  rotationOffsetAtTarget: {x: 0, y: 0, z: 0}
-  alignedMitosisPosition: {x: 0, y: 0, z: 0}
-  alignedMitosisRotation: {x: 0, y: 0, z: 0}
-  alignedMitosisScale: 0
+  rotationOffsetAtTarget: {x: -50, y: 120, z: 45}
+  alignedMitosisPosition: {x: 0.026, y: 0.688, z: 0.119}
+  alignedMitosisRotation: {x: 0, y: -28.713, z: 0}
+  alignedMitosisScale: 0.5
   attachedTarget: {fileID: 0}
   lastSpawnTime: 0
   isGrabbable: 0
