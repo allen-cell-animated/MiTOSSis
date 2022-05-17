@@ -19,3 +19,4 @@
         <meta-data android:name="com.samsung.android.vr.application.mode" android:value="vr_only"/>
     </application>
 </manifest>
+

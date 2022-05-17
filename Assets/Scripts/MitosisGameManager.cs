@@ -88,6 +88,7 @@ public class MitosisGameManager : MonoBehaviour
             }
 
             throwableCells[i] = (Instantiate( prefab, transform ) as GameObject).GetComponent<ThrowableCell>();
+            throwableCells[i].outline.enabled = false;
             throwableCells[i].transform.position = transform.position + randomPositionInThrowableSpawnArea;
             throwableCells[i].transform.rotation = Random.rotation;
             throwableCells[i].transform.localScale = throwableSpawnScale * Vector3.one;

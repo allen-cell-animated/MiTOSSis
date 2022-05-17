@@ -58,6 +58,9 @@ public class VisualGuideManager : MonoBehaviour
         if (currentMode == VisualGuideGameMode.Lobby)
         {
             currentStuctureIndex = index;
+
+            UIManager.Instance.Log("SELECT " + structureNames[currentStuctureIndex]);
+
             UIManager.Instance.nextStructureLabel.text = structureNames[currentStuctureIndex];
             UIManager.Instance.nextStructureLabel.GetComponent<Animator>().SetTrigger( "animate" );
         }

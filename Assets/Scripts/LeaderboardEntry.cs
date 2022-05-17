@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LeaderboardEntry : MonoBehaviour 
 {
     public Text rank;
-    public Text playerName;
+    public TextMeshProUGUI playerName;
     public Text time;
+    public GameObject inputText;
 
     public void Populate (int _rank, string _playerName, float _timeSeconds)
     {
@@ -19,5 +21,6 @@ public class LeaderboardEntry : MonoBehaviour
     public void UpdatePlayerName (string _newPlayerName)
     {
         playerName.text = _newPlayerName;
+        inputText.SetActive(false);
     }
 }

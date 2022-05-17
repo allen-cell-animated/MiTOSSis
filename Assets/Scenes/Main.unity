@@ -702,17 +702,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470949945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalRotation: {x: -0, y: 0.19691864, z: -0, w: 0.9804199}
+  m_LocalPosition: {x: 0, y: 0, z: 0.18}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children: []
   m_Father: {fileID: 1768389450}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 22.714, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 30}
+  m_AnchoredPosition: {x: 1.08, y: 0.5899999}
+  m_SizeDelta: {x: 3000, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &470949947
 MonoBehaviour:
@@ -883,10 +883,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1680501587, guid: b2ccf5ddde7714224965d41368f7e673, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: b2ccf5ddde7714224965d41368f7e673,
         type: 3}
       propertyPath: m_Name
@@ -1063,22 +1059,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4664581651639391442, guid: 02beea58ddf154183a669e557976b240,
         type: 3}
-      propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466564654}
     - target: {fileID: 5920261937794957715, guid: 02beea58ddf154183a669e557976b240,
         type: 3}
-      propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466564654}
     - target: {fileID: 5969608785330007318, guid: 02beea58ddf154183a669e557976b240,
         type: 3}
-      propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466564654}
     - target: {fileID: 6319542890696882906, guid: 02beea58ddf154183a669e557976b240,
         type: 3}
-      propertyPath: m_OnActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466564654}
     - target: {fileID: 7987519866788385361, guid: 02beea58ddf154183a669e557976b240,
@@ -1230,6 +1226,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 939090106}
+    - target: {fileID: 223684480450578352, guid: 87d496fc688fa4d4c889cbcd7145179f,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 224062414528757252, guid: 87d496fc688fa4d4c889cbcd7145179f,
         type: 3}
       propertyPath: m_Pivot.x

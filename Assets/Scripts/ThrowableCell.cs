@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using cakeslice;
 
 public class ThrowableCell : MonoBehaviour 
 {
@@ -79,6 +80,19 @@ public class ThrowableCell : MonoBehaviour
                 _scaler = gameObject.AddComponent<Scaler>();
             }
             return _scaler;
+        }
+    }
+
+    Outline _outline;
+    public Outline outline
+    {
+        get
+        {
+            if (_outline == null)
+            {
+                _outline = GetComponentInChildren<Outline>();
+            }
+            return _outline;
         }
     }
 

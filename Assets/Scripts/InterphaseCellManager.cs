@@ -10,6 +10,8 @@ public class InterphaseCellManager : MonoBehaviour
     Vector3 lobbyPosition;
     Quaternion lobbyRotation;
     float lobbyScale;
+    float lastSetStructureTime = -1f;
+    float waitTimeToHoverStructure = 0.3f;
 
     LabelCanvas _structureLabel;
     LabelCanvas structureLabel
@@ -147,7 +149,7 @@ public class InterphaseCellManager : MonoBehaviour
 
     public void HighlightAndLabelStructure (CellStructure _structure)
     {
-        if (canInteract)
+        if (canInteract && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
         {
             structureLabel.gameObject.SetActive( true );
             structureLabel.SetLabel( _structure.structureName, _structure.nameWidth );
@@ -157,7 +159,8 @@ public class InterphaseCellManager : MonoBehaviour
 
     public void RemoveHighlightAndLabel (CellStructure _structure)
     {
-        if (structureLabel != null && _structure == highlightedStructure)
+        if (structureLabel != null && _structure == highlightedStructure 
+            && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
         {
             structureLabel.gameObject.SetActive( false );
             SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
@@ -176,6 +179,7 @@ public class InterphaseCellManager : MonoBehaviour
     public void SetHighlightedStructure (CellStructure _structure)
     {
         highlightedStructure = _structure;
+        lastSetStructureTime = Time.time;
         foreach (CellStructure structure in structures)
         {
             structure.colorer.SetColor( structure != highlightedStructure ? 0 : 1);
