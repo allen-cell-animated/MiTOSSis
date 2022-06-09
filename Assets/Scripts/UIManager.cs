@@ -98,6 +98,7 @@ public class UIManager : MonoBehaviour
         playbutton.SetActive( false );
         countdownCanvas.gameObject.SetActive( true );
         countdownCanvas.StartCountdown();
+        progressCanvas.animator.SetTrigger("Open");
     }
 
     public void StartTimer ()
