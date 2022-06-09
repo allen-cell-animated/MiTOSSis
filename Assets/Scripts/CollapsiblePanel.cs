@@ -11,7 +11,7 @@ public class CollapsiblePanel : MonoBehaviour
 
     void OnTriggerEnter (Collider other)
     {
-        if (other.tag == "Head" && !colliding)
+        if (other.tag == "MainCamera" && !colliding)
         {
             SetPanel( true );
             colliding = true;
@@ -20,7 +20,7 @@ public class CollapsiblePanel : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
-        if (colliding)
+        if (other.tag == "MainCamera" && colliding)
         {
             SetPanel( false );
             colliding = false;
