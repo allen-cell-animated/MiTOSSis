@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4060847076514892}
   - component: {fileID: 54832663742336656}
   - component: {fileID: 114062771093565702}
-  - component: {fileID: 3100775799713378826}
+  - component: {fileID: 433377920207869765}
   m_Layer: 0
   m_Name: MetaphaseCell
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   lastSpawnTime: 0
   isGrabbable: 0
   isGrabbed: 0
---- !u!114 &3100775799713378826
+--- !u!114 &433377920207869765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +161,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392914716758910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: cf79acfab25947c4dbf20b83a1e3db40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []

@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4878074356975178}
   - component: {fileID: 54287258906400356}
   - component: {fileID: 114593279708854774}
-  - component: {fileID: 7643465900452614136}
+  - component: {fileID: -69167616826821869}
   m_Layer: 0
   m_Name: ProphaseCell
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   lastSpawnTime: 0
   isGrabbable: 0
   isGrabbed: 0
---- !u!114 &7643465900452614136
+--- !u!114 &-69167616826821869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +161,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1380426534215120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: cf79acfab25947c4dbf20b83a1e3db40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -206,12 +206,12 @@ MonoBehaviour:
   m_OnSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114593279708854774}
-        m_MethodName: ReleaseFromTarget
-        m_Mode: 6
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -220,12 +220,12 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114593279708854774}
-        m_MethodName: ReleaseFromTarget
-        m_Mode: 6
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

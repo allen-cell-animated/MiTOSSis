@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 4955427673135952}
   - component: {fileID: 54214745049559236}
   - component: {fileID: 114199389721618292}
-  - component: {fileID: -2115903108564823303}
+  - component: {fileID: -978240030323713587}
   m_Layer: 0
   m_Name: PrometaphaseCell
   m_TagString: Untagged
@@ -261,7 +261,7 @@ MonoBehaviour:
   lastSpawnTime: 0
   isGrabbable: 0
   isGrabbed: 0
---- !u!114 &-2115903108564823303
+--- !u!114 &-978240030323713587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,14 +270,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1564549659720698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: cf79acfab25947c4dbf20b83a1e3db40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
