@@ -151,7 +151,7 @@ public class InterphaseCellManager : MonoBehaviour
     private void Update()
     {
         //Custom behavior to avoid the XRRayInteractor hovering multiple structures at once
-        if (uiController != null && ray != null)
+        if (uiController != null && ray != null && !inIsolationMode)
         {
             ray.GetCurrentRaycastHit(out RaycastHit raycastHit);
 
