@@ -71,7 +71,7 @@ MonoBehaviour:
   alignedMitosisScale: 0.5
   attachedTarget: {fileID: 0}
   lastSpawnTime: 0
-  isGrabbable: 1
+  isGrabbable: 0
   isGrabbed: 0
 --- !u!114 &-5558025169785431471
 MonoBehaviour:

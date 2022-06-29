@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,19 @@ public class VisualGuideManager : MonoBehaviour
         }
     }
 
+    public void SetStucture(string name)
+    {
+        if (currentMode == VisualGuideGameMode.Lobby)
+        {
+            currentStuctureIndex = Array.IndexOf(structureNames, name);
+
+            UIManager.Instance.Log("SELECT " + structureNames[currentStuctureIndex]);
+
+            UIManager.Instance.nextStructureLabel.text = structureNames[currentStuctureIndex];
+            UIManager.Instance.nextStructureLabel.GetComponent<Animator>().SetTrigger("animate");
+        }
+    }
+
     public void SelectNextStructureAndPlay ()
     {
         interphaseCell.SelectStructure( structureNames[currentStuctureIndex] );
@@ -83,8 +97,6 @@ public class VisualGuideManager : MonoBehaviour
         currentGameManager.StartGame( structureName, 1.5f );
 
         interphaseCell.TransitionToPlayMode( currentGameManager );
-        ControllerInput.Instance.ToggleLaserRenderer( false );
-        ControllerInput.Instance.laserDisabledUnlessPointingAtUI = true;
     }
 
     MitosisGameManager CreateMitosisGameManager ()
@@ -107,7 +119,10 @@ public class VisualGuideManager : MonoBehaviour
         AnimateCellSuccess( interphaseCell.gameObject );
         currentGameManager.AnimateCellsForSuccess();
         successGameManager = CreateMitosisGameManager();
-        StartCoroutine( successGameManager.SpawnAllThrowables( structureNames ) );
+        if (successGameManager != null)
+        {
+            successGameManager.StartCoroutine(successGameManager.SpawnAllThrowables(structureNames));
+        }
 
         currentStuctureIndex++;
         if (currentStuctureIndex >= structureNames.Length)
@@ -149,8 +164,6 @@ public class VisualGuideManager : MonoBehaviour
         Cleanup();
 
         interphaseCell.TransitionToLobbyMode();
-        ControllerInput.Instance.ToggleLaserRenderer( true );
-        ControllerInput.Instance.laserDisabledUnlessPointingAtUI = false;
         UIManager.Instance.EnterLobbyMode( structureNames[currentStuctureIndex] );
     }
 
@@ -172,6 +185,7 @@ public class VisualGuideManager : MonoBehaviour
         }
         if (successGameManager != null)
         {
+            successGameManager.StopAllCoroutines();
             Destroy( successGameManager.gameObject );
         }
     }

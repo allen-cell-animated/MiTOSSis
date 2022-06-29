@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using VRTK;
 using System;
 
 public class UIManager : MonoBehaviour 
@@ -93,12 +92,12 @@ public class UIManager : MonoBehaviour
     {
         progressCanvas.SetSelected( structureData.structureName, true );
         progressCanvas.SetButtonLabel( false );
+        progressCanvas.gameObject.SetActive(false);
         structureInfoCanvas.SetContent( structureData );
         dataInfoCanvas.transform.parent.gameObject.SetActive( false );
         playbutton.SetActive( false );
         countdownCanvas.gameObject.SetActive( true );
         countdownCanvas.StartCountdown();
-        progressCanvas.animator.SetTrigger("Open");
     }
 
     public void StartTimer ()
@@ -117,6 +116,7 @@ public class UIManager : MonoBehaviour
 
     public void EnterLobbyMode (string currentStructureName)
     {
+        leaderboard.Close();
         progressCanvas.animator.SetTrigger( "Close" );
         dataInfoCanvas.transform.parent.gameObject.SetActive( true );
         structureInfoCanvas.transform.parent.gameObject.SetActive( false );
@@ -134,7 +134,7 @@ public class UIManager : MonoBehaviour
 
     public void Log (string message)
     {
-        if (debugText.gameObject.active)
+        if (debugText.gameObject.activeInHierarchy)
         {
             debugText.text += message + "\n";
         }
