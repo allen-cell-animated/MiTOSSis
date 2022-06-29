@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRTK;
 
 public class Transformer : MonoBehaviour 
 {
@@ -28,12 +27,12 @@ public class Transformer : MonoBehaviour
 
     void UpdateTransforming ()
     {
-        if (ControllerInput.Instance.rightGripDown && ControllerInput.Instance.leftGripDown)
+        if (ControllerInput.Instance.IsRightGrip() && ControllerInput.Instance.IsLeftGrip())
         {
             if (!transforming)
             {
                 transforming = true;
-                ControllerInput.Instance.ToggleLaserRenderer( false );
+                ControllerInput.Instance.ToggleRayInteractor( false );
                 StartScaling();
                 StartRotating();
             }
@@ -47,7 +46,7 @@ public class Transformer : MonoBehaviour
         else if (transforming)
         {
             ToggleLine( false );
-            ControllerInput.Instance.ToggleLaserRenderer( true );
+            ControllerInput.Instance.ToggleRayInteractor( true );
             transforming = false;
         }
     }
@@ -57,7 +56,12 @@ public class Transformer : MonoBehaviour
         if (canScale)
         {
             startScale = transform.localScale;
-            startControllerDistance = Vector3.Distance( ControllerInput.Instance.pointerRight.transform.position, ControllerInput.Instance.pointerLeft.transform.position );
+            Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+            Vector3 right = ControllerInput.Instance.RightControllerPosition();
+            if (left != null && right != null)
+            {
+                startControllerDistance = Vector3.Distance(right, left);
+            }
         }
     }
 
@@ -65,9 +69,13 @@ public class Transformer : MonoBehaviour
     {
         if (canScale)
         {
-            float scale = Vector3.Distance( ControllerInput.Instance.pointerRight.transform.position, ControllerInput.Instance.pointerLeft.transform.position ) / startControllerDistance;
-
-            transform.localScale = ClampScale( scale * startScale );
+            Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+            Vector3 right = ControllerInput.Instance.RightControllerPosition();
+            if (left != null && right != null)
+            {
+                float scale = Vector3.Distance(right, left) / startControllerDistance;
+                transform.localScale = ClampScale(scale * startScale);
+            }
         }
     }
 
@@ -92,9 +100,14 @@ public class Transformer : MonoBehaviour
         if (canRotate)
         {
             startRotation = transform.localRotation;
-            startControllerVector = ControllerInput.Instance.pointerRight.transform.position - ControllerInput.Instance.pointerLeft.transform.position;
-            startControllerVector.y = 0;
-            startPositiveVector = Vector3.Cross( startControllerVector, Vector3.up );
+            Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+            Vector3 right = ControllerInput.Instance.RightControllerPosition();
+            if (left != null && right != null)
+            {
+                startControllerVector = right - left;
+                startControllerVector.y = 0;
+                startPositiveVector = Vector3.Cross(startControllerVector, Vector3.up);
+            }
         }
     }
 
@@ -102,12 +115,17 @@ public class Transformer : MonoBehaviour
     {
         if (canRotate)
         {
-            Vector3 controllerVector = ControllerInput.Instance.pointerRight.transform.position - ControllerInput.Instance.pointerLeft.transform.position;
-            controllerVector.y = 0;
-            float direction = GetArcCosineDegrees( Vector3.Dot( startPositiveVector.normalized, controllerVector.normalized ) ) >= 90f ? 1f : -1f;
-            float dAngle = direction * GetArcCosineDegrees( Vector3.Dot( startControllerVector.normalized, controllerVector.normalized ) );
+            Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+            Vector3 right = ControllerInput.Instance.RightControllerPosition();
+            if (left != null && right != null)
+            {
+                Vector3 controllerVector = right - left;
+                controllerVector.y = 0;
+                float direction = GetArcCosineDegrees(Vector3.Dot(startPositiveVector.normalized, controllerVector.normalized)) >= 90f ? 1f : -1f;
+                float dAngle = direction * GetArcCosineDegrees(Vector3.Dot(startControllerVector.normalized, controllerVector.normalized));
 
-            transform.localRotation = startRotation * Quaternion.AngleAxis( dAngle, Vector3.up );
+                transform.localRotation = startRotation * Quaternion.AngleAxis(dAngle, Vector3.up);
+            }
         }
     }
 
@@ -126,14 +144,16 @@ public class Transformer : MonoBehaviour
 
     void ToggleLine (bool _active)
     {
-        if (_active)
+        Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+        Vector3 right = ControllerInput.Instance.RightControllerPosition();
+        if (_active && left != null && right != null)
         {
             if (!scaleLine.gameObject.activeSelf)
             {
                 scaleLine.gameObject.SetActive( true );
             }
-            linePoints[0] = ControllerInput.Instance.pointerRight.transform.position;
-            linePoints[1] = ControllerInput.Instance.pointerLeft.transform.position;
+            linePoints[0] = right;
+            linePoints[1] = left;
             scaleLine.SetPositions( linePoints );
         }
         else
