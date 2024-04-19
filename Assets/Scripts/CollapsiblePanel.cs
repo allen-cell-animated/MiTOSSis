@@ -5,11 +5,15 @@ using UnityEngine;
 public class CollapsiblePanel : MonoBehaviour 
 {
     public Animator panel;
-    bool open = false;
+    public GameObject openLabel;
+    public GameObject closeLabel;
+    bool open;
 
     public void TogglePanel ()
     {
-        panel.SetTrigger( open ? "Open" : "Close" );
+        panel.SetTrigger( open ? "Close" : "Open" );
+        openLabel.SetActive( open );
+        closeLabel.SetActive( !open );
         open = !open;
     }
 }
