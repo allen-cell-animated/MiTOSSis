@@ -6,11 +6,11 @@ using System;
 
 public class UIManager : MonoBehaviour 
 {
-    public InfoCanvas dataInfoCanvas;
-    public InfoCanvas structureInfoCanvas;
+    public GameObject dataInfoPanel;
+    public InfoCanvas structureInfoPanel;
     public ProgressCanvas progressCanvas;
     public Leaderboard leaderboard;
-    public GameObject playbutton;
+    public GameObject playPanelCanvas;
     public Text nextStructureLabel;
     public CountdownCanvas countdownCanvas;
     public Text debugText;
@@ -31,30 +31,7 @@ public class UIManager : MonoBehaviour
     void Start ()
     {
         leaderboard.gameObject.SetActive( false );
-        structureInfoCanvas.transform.parent.gameObject.SetActive( false );
-    }
-
-    void Update ()
-    {
-        // if (Input.GetKeyUp( KeyCode.X ) && VisualGuideManager.Instance.currentMode != VisualGuideGameMode.Lobby)
-        // {
-        //     VisualGuideManager.Instance.ReturnToLobby();
-        // }
-
-        // if (Input.GetKeyUp( KeyCode.C ))
-        // {
-        //     //toggle color in integrated cell in lobby
-        // }
-
-        // if (Input.GetKeyUp( KeyCode.Q ))
-        // {
-        //     //toggle cell placement in game
-        // }
-
-        // if (Input.GetKey( KeyCode.A ) && Input.GetKey( KeyCode.I ) && Input.GetKey( KeyCode.C ) && Input.GetKey( KeyCode.S ))
-        // {
-        //     leaderboard.ClearAllRankings();
-        // }
+        structureInfoPanel.transform.parent.gameObject.SetActive( false );
     }
 
     public void UpdateTime (float startTime)
@@ -93,9 +70,9 @@ public class UIManager : MonoBehaviour
         progressCanvas.SetSelected( structureData.structureName, true );
         progressCanvas.SetButtonLabel( false );
         progressCanvas.gameObject.SetActive(false);
-        structureInfoCanvas.SetContent( structureData );
-        dataInfoCanvas.transform.parent.gameObject.SetActive( false );
-        playbutton.SetActive( false );
+        structureInfoPanel.SetContent( structureData );
+        dataInfoPanel.transform.parent.gameObject.SetActive( false );
+        playPanelCanvas.transform.parent.gameObject.SetActive( false );
         countdownCanvas.gameObject.SetActive( true );
         countdownCanvas.StartCountdown();
     }
@@ -110,7 +87,7 @@ public class UIManager : MonoBehaviour
     public void EnterSuccessMode (string structureName, float timeSeconds)
     {
         DisplayScore( timeSeconds );
-        structureInfoCanvas.transform.parent.gameObject.SetActive( true );
+        structureInfoPanel.transform.parent.gameObject.SetActive( true );
         progressCanvas.SetButtonLabel( true );
     }
 
@@ -118,13 +95,13 @@ public class UIManager : MonoBehaviour
     {
         leaderboard.Close();
         progressCanvas.animator.SetTrigger( "Close" );
-        dataInfoCanvas.transform.parent.gameObject.SetActive( true );
-        structureInfoCanvas.transform.parent.gameObject.SetActive( false );
-        playbutton.SetActive( true );
-        playbutton.GetComponent<Animator>().SetTrigger( "Open" );
+        dataInfoPanel.transform.parent.gameObject.SetActive( true );
+        structureInfoPanel.transform.parent.gameObject.SetActive( false );
+        playPanelCanvas.transform.parent.gameObject.SetActive( true );
+        playPanelCanvas.GetComponent<Animator>().SetTrigger( "Open" );
 
-        nextStructureLabel.text = (currentStructureName == "Endoplasmic Reticulum (ER)" ? "Endoplasmic\u2008Reticulum\u2008(ER)" :
-                                   currentStructureName == "Golgi Apparatus" ? "Golgi\u2008Apparatus" : currentStructureName);
+        // nextStructureLabel.text = (currentStructureName == "Endoplasmic Reticulum (ER)" ? "Endoplasmic\u2008Reticulum\u2008(ER)" :
+        //                            currentStructureName == "Golgi Apparatus" ? "Golgi\u2008Apparatus" : currentStructureName);
     }
 
     public void Play ()
