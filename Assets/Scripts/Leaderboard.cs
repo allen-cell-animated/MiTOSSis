@@ -77,8 +77,8 @@ public class Leaderboard : MonoBehaviour
         currentScore = new HighScore( "[your name here]", timeSeconds );
         highScores.Add( currentScore );
         highScores.Sort();
-        keyboard.gameObject.SetActive(true);
-        keyboard.ClearText();
+        // keyboard.gameObject.SetActive(true);
+        // keyboard.ClearText();
 
         ClearDisplay();
         DisplayHighscores();
@@ -154,7 +154,7 @@ public class Leaderboard : MonoBehaviour
 
     public void Close ()
     {
-        gameObject.SetActive( false );
+        gameObject.transform.parent.gameObject.SetActive( false );
     }
 }
 

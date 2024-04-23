@@ -16,7 +16,7 @@ public class Keyboard : MonoBehaviour
     public void ClickKey (string character)
     {
         currentText += character;
-        UIManager.Instance.leaderboard.UpdateCurrentPlayerName( currentText );
+        UIManager.Instance.leaderboardPanelCanvas.UpdateCurrentPlayerName( currentText );
     }
 
     public void Backspace ()
@@ -24,7 +24,7 @@ public class Keyboard : MonoBehaviour
         if (currentText != null && currentText.Length > 0)
         {
             currentText = currentText.Substring(0, currentText.Length - 1);
-            UIManager.Instance.leaderboard.UpdateCurrentPlayerName( currentText );
+            UIManager.Instance.leaderboardPanelCanvas.UpdateCurrentPlayerName( currentText );
         }
     }
 

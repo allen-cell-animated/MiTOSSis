@@ -31,6 +31,7 @@ public class Scaler : MonoBehaviour
 
     void Scale (float _goalScale)
     {
+        UIManager.Instance.Log( "Scale to " + _goalScale );
         startScale = transform.localScale.x;
         goalScale = _goalScale;
         t = 0;

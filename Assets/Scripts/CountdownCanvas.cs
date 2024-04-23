@@ -8,6 +8,7 @@ public class CountdownCanvas : MonoBehaviour
 
     public void StartCountdown ()
     {
+        UIManager.Instance.Log( "CountdownCanvas: START countdown" );
         numbers.SetTrigger( "play" );
     }
 

@@ -11,8 +11,8 @@ public class LabelCanvas : MonoBehaviour
 
     void Update ()
     {
-        transform.position = cursor.transform.position;
-        transform.rotation = cursor.transform.rotation;
+        // transform.position = cursor.transform.position;
+        // transform.rotation = cursor.transform.rotation;
     } 
 
     public void SetLabel (string structureName, float nameWidth)

@@ -10,7 +10,7 @@ public class InterphaseCellManager : MonoBehaviour
     CellStructure selectedStructure;
     Vector3 lobbyPosition;
     Quaternion lobbyRotation;
-    float lobbyScale;
+    float lobbyScale = 0.5f;
     float lastSetStructureTime = -1f;
     float waitTimeToHoverStructure = 0.3f;
     GameObject uiController;
@@ -139,7 +139,6 @@ public class InterphaseCellManager : MonoBehaviour
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
         lobbyPosition = transform.position;
         lobbyRotation = transform.rotation;
-        lobbyScale = transform.localScale.x;
         uiController = GameObject.Find("RightUIController");
         ray = uiController.GetComponent<XRRayInteractor>();
         rayLine = uiController.GetComponent<XRInteractorLineVisual>();

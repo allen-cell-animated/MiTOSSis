@@ -20,7 +20,7 @@ public class Transformer : MonoBehaviour
 
     void Update ()
     {
-        UpdateTransforming();
+        // UpdateTransforming();
     }
 
     // TRANSLATING --------------------------------------------------------------------------------------------------

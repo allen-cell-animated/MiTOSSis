@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject dataInfoPanel;
     public InfoCanvas structureInfoPanel;
-    public ProgressCanvas progressCanvas;
-    public Leaderboard leaderboard;
+    public ProgressCanvas progressPanelCanvas;
+    public Leaderboard leaderboardPanelCanvas;
     public GameObject playPanelCanvas;
     public Text nextStructureLabel;
     public CountdownCanvas countdownCanvas;
@@ -28,15 +28,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void Start ()
-    {
-        leaderboard.gameObject.SetActive( false );
-        structureInfoPanel.transform.parent.gameObject.SetActive( false );
-    }
-
     public void UpdateTime (float startTime)
     {
-        progressCanvas.time.text = FormatTime( Time.time - startTime );
+        progressPanelCanvas.time.text = FormatTime( Time.time - startTime );
     }
 
     public string FormatTime (float timeSeconds)
@@ -61,17 +55,19 @@ public class UIManager : MonoBehaviour
 
     public void DisplayScore (float elapsedTime)
     {
-        leaderboard.gameObject.SetActive( true );
-        leaderboard.RecordNewScore( elapsedTime );
+        leaderboardPanelCanvas.transform.parent.gameObject.SetActive( true );
+
+        leaderboardPanelCanvas.RecordNewScore( elapsedTime );
     }
 
     public void EnterPlayMode (StructureData structureData)
     {
-        progressCanvas.SetSelected( structureData.structureName, true );
-        progressCanvas.SetButtonLabel( false );
-        progressCanvas.gameObject.SetActive(false);
+        UIManager.Instance.Log( "UIManager: EnterPlayMode" );
+        progressPanelCanvas.SetSelected( structureData.structureName, true );
+        progressPanelCanvas.SetButtonLabel( false );
+        progressPanelCanvas.transform.parent.gameObject.SetActive(false);
         structureInfoPanel.SetContent( structureData );
-        dataInfoPanel.transform.parent.gameObject.SetActive( false );
+        dataInfoPanel.gameObject.SetActive( false );
         playPanelCanvas.transform.parent.gameObject.SetActive( false );
         countdownCanvas.gameObject.SetActive( true );
         countdownCanvas.StartCountdown();
@@ -81,27 +77,27 @@ public class UIManager : MonoBehaviour
     {
         UIManager.Instance.Log( "UIManager: start timer" );
         VisualGuideManager.Instance.currentGameManager.StartTimer();
-        progressCanvas.gameObject.SetActive( true );
+        progressPanelCanvas.transform.parent.gameObject.SetActive( true );
     }
 
     public void EnterSuccessMode (string structureName, float timeSeconds)
     {
         DisplayScore( timeSeconds );
-        structureInfoPanel.transform.parent.gameObject.SetActive( true );
-        progressCanvas.SetButtonLabel( true );
+        structureInfoPanel.gameObject.SetActive( true );
+        progressPanelCanvas.SetButtonLabel( true );
     }
 
     public void EnterLobbyMode (string currentStructureName)
     {
-        leaderboard.Close();
-        progressCanvas.animator.SetTrigger( "Close" );
-        dataInfoPanel.transform.parent.gameObject.SetActive( true );
-        structureInfoPanel.transform.parent.gameObject.SetActive( false );
+        leaderboardPanelCanvas.Close();
+        progressPanelCanvas.animator.SetTrigger( "Close" );
+        dataInfoPanel.gameObject.SetActive( true );
+        structureInfoPanel.gameObject.SetActive( false );
         playPanelCanvas.transform.parent.gameObject.SetActive( true );
         playPanelCanvas.GetComponent<Animator>().SetTrigger( "Open" );
 
-        // nextStructureLabel.text = (currentStructureName == "Endoplasmic Reticulum (ER)" ? "Endoplasmic\u2008Reticulum\u2008(ER)" :
-        //                            currentStructureName == "Golgi Apparatus" ? "Golgi\u2008Apparatus" : currentStructureName);
+        nextStructureLabel.text = (currentStructureName == "Endoplasmic Reticulum (ER)" ? "Endoplasmic\u2008Reticulum\u2008(ER)" :
+                                   currentStructureName == "Golgi Apparatus" ? "Golgi\u2008Apparatus" : currentStructureName);
     }
 
     public void Play ()

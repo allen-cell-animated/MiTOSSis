@@ -11,34 +11,34 @@ public class OffsetInteractable : XRGrabInteractable
     private void Update()
     {
 
-        XRDirectInteractor leftInteractor = ControllerInput.Instance.leftInteractor;
-        XRDirectInteractor rightInteractor = ControllerInput.Instance.rightInteractor;
-        bool leftGrip = ControllerInput.Instance.IsLeftGrip();
-        bool rightGrip = ControllerInput.Instance.IsRightGrip();
+        // XRDirectInteractor leftInteractor = ControllerInput.Instance.leftInteractor;
+        // XRDirectInteractor rightInteractor = ControllerInput.Instance.rightInteractor;
+        // bool leftGrip = ControllerInput.Instance.IsLeftGrip();
+        // bool rightGrip = ControllerInput.Instance.IsRightGrip();
 
-        if (leftInteractor != null && !leftGrip && leftInteractor.allowSelect == false)
-        {
-            leftInteractor.allowSelect = true;
-        }
+        // if (leftInteractor != null && !leftGrip && leftInteractor.allowSelect == false)
+        // {
+        //     leftInteractor.allowSelect = true;
+        // }
 
-        if (rightInteractor != null && !rightGrip && rightInteractor.allowSelect == false)
-        {
-            rightInteractor.allowSelect = true;
-        }
+        // if (rightInteractor != null && !rightGrip && rightInteractor.allowSelect == false)
+        // {
+        //     rightInteractor.allowSelect = true;
+        // }
 
-        if (rightInteractor != null && rightGrip && rightInteractor.selectTarget != null)
-        {
-            ControllerInput.Instance.ToggleRayInteractor(false);
-        }
-        else
-        {
-            ControllerInput.Instance.ToggleRayInteractor(true);
-        }
+        // if (rightInteractor != null && rightGrip && rightInteractor.selectTarget != null)
+        // {
+        //     ControllerInput.Instance.ToggleRayInteractor(false);
+        // }
+        // else
+        // {
+        //     ControllerInput.Instance.ToggleRayInteractor(true);
+        // }
     }
     protected override void OnSelectEntering(XRBaseInteractor interactor)
     {
         MatchAttachPoint(interactor);
-        SwapHands();
+        // SwapHands();
         base.OnSelectEntering(interactor);
     }
     protected override void OnSelectExiting(XRBaseInteractor interactor)

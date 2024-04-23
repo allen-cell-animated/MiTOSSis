@@ -10,7 +10,6 @@ public class ProgressCanvas : MonoBehaviour
     public GameObject selectedGolgi;
     public GameObject selectedMTs;
     public GameObject selectedMitos;
-    public Text titleLabel;
     public GameObject backLabel;
     public GameObject nextLabel;
 
