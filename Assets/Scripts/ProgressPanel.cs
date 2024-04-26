@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressCanvas : MonoBehaviour 
+public class ProgressPanel : MonoBehaviour 
 {
     public Text time;
     public GameObject selectedER;

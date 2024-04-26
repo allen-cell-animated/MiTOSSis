@@ -33,14 +33,14 @@ public class VisualGuideManager : MonoBehaviour
         }
     }
 
-    InterphaseCellManager _interphaseCell;
-    public InterphaseCellManager interphaseCell
+    InterphaseCell _interphaseCell;
+    public InterphaseCell interphaseCell
     {
         get
         {
             if (_interphaseCell == null)
             {
-                _interphaseCell = GameObject.FindObjectOfType<InterphaseCellManager>();
+                _interphaseCell = GameObject.FindObjectOfType<InterphaseCell>();
             }
             return _interphaseCell;
         }
@@ -176,14 +176,14 @@ public class VisualGuideManager : MonoBehaviour
     void Cleanup ()
     {
 
-        foreach (OffsetInteractable offset in Resources.FindObjectsOfTypeAll(typeof(OffsetInteractable)) as OffsetInteractable[])
-        {
-            offset.colliders.Clear();
-            if (offset.isSelected)
-            {
-                Destroy(offset.gameObject);
-            }
-        }
+        // foreach (OffsetInteractable offset in Resources.FindObjectsOfTypeAll(typeof(OffsetInteractable)) as OffsetInteractable[])
+        // {
+        //     offset.colliders.Clear();
+        //     if (offset.isSelected)
+        //     {
+        //         Destroy(offset.gameObject);
+        //     }
+        // }
 
         if (currentGameManager != null)
         {

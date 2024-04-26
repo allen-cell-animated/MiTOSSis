@@ -8,11 +8,11 @@ public class UIManager : MonoBehaviour
 {
     public GameObject dataInfoPanel;
     public InfoCanvas structureInfoPanel;
-    public ProgressCanvas progressPanelCanvas;
+    public ProgressPanel progressPanel;
     public Leaderboard leaderboardPanelCanvas;
-    public GameObject playPanelCanvas;
+    public GameObject lobbyPanel;
     public Text nextStructureLabel;
-    public CountdownCanvas countdownCanvas;
+    public CountdownPanel countdownPanel;
     public Text debugText;
 
     static UIManager _Instance;
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTime (float startTime)
     {
-        progressPanelCanvas.time.text = FormatTime( Time.time - startTime );
+        progressPanel.time.text = FormatTime( Time.time - startTime );
     }
 
     public string FormatTime (float timeSeconds)
@@ -63,38 +63,38 @@ public class UIManager : MonoBehaviour
     public void EnterPlayMode (StructureData structureData)
     {
         UIManager.Instance.Log( "UIManager: EnterPlayMode" );
-        progressPanelCanvas.SetSelected( structureData.structureName, true );
-        progressPanelCanvas.SetButtonLabel( false );
-        progressPanelCanvas.transform.parent.gameObject.SetActive(false);
+        progressPanel.SetSelected( structureData.structureName, true );
+        progressPanel.SetButtonLabel( false );
+        progressPanel.gameObject.SetActive(false);
         structureInfoPanel.SetContent( structureData );
         dataInfoPanel.gameObject.SetActive( false );
-        // playPanelCanvas.transform.parent.gameObject.SetActive( false );
-        countdownCanvas.gameObject.SetActive( true );
-        countdownCanvas.StartCountdown();
+        lobbyPanel.gameObject.SetActive( false );
+        countdownPanel.gameObject.SetActive( true );
+        countdownPanel.StartCountdown();
     }
 
     public void StartTimer ()
     {
         UIManager.Instance.Log( "UIManager: start timer" );
         VisualGuideManager.Instance.currentGameManager.StartTimer();
-        progressPanelCanvas.transform.parent.gameObject.SetActive( true );
+        progressPanel.gameObject.SetActive( true );
     }
 
     public void EnterSuccessMode (string structureName, float timeSeconds)
     {
         DisplayScore( timeSeconds );
         structureInfoPanel.gameObject.SetActive( true );
-        progressPanelCanvas.SetButtonLabel( true );
+        progressPanel.SetButtonLabel( true );
     }
 
     public void EnterLobbyMode (string currentStructureName)
     {
         leaderboardPanelCanvas.Close();
-        progressPanelCanvas.animator.SetTrigger( "Close" );
+        progressPanel.animator.SetTrigger( "Close" );
         dataInfoPanel.gameObject.SetActive( true );
         structureInfoPanel.gameObject.SetActive( false );
-        playPanelCanvas.transform.parent.gameObject.SetActive( true );
-        playPanelCanvas.GetComponent<Animator>().SetTrigger( "Open" );
+        lobbyPanel.gameObject.SetActive( true );
+        lobbyPanel.GetComponent<Animator>().SetTrigger( "Open" );
 
         nextStructureLabel.text = (currentStructureName == "Endoplasmic Reticulum (ER)" ? "Endoplasmic\u2008Reticulum\u2008(ER)" :
                                    currentStructureName == "Golgi Apparatus" ? "Golgi\u2008Apparatus" : currentStructureName);

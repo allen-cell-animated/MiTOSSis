@@ -6,6 +6,6 @@ public class FinishCountdown : StateMachineBehaviour
 {
 	override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        animator.GetComponentInParent<CountdownCanvas>().FinishCountdown();
+        animator.GetComponentInParent<CountdownPanel>().FinishCountdown();
 	}
 }

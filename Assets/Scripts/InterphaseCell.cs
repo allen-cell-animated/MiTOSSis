@@ -1,25 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+// using UnityEngine.XR.Interaction.Toolkit;
 
-public class InterphaseCellManager : MonoBehaviour 
+public class InterphaseCell : MonoBehaviour 
 {
     bool inIsolationMode;
     CellStructure highlightedStructure;
     CellStructure selectedStructure;
-    Vector3 lobbyPosition;
-    Quaternion lobbyRotation;
-    float lobbyScale = 0.5f;
+    public Vector3 lobbyPosition;
+    public Vector3 lobbyRotation;
+    public float defaultScale;
     float lastSetStructureTime = -1f;
     float waitTimeToHoverStructure = 0.3f;
-    GameObject uiController;
-    XRRayInteractor ray;
-    XRInteractorLineVisual rayLine;
-    Gradient validGradient;
-    Gradient invalidGradient;
-    float rayMaxDistance;
-    bool rayNoHit = true;
+    // GameObject uiController;
+    // XRRayInteractor ray;
+    // XRInteractorLineVisual rayLine;
+    // Gradient validGradient;
+    // Gradient invalidGradient;
+    // float rayMaxDistance;
+    // bool rayNoHit = true;
 
     LabelCanvas _structureLabel;
     LabelCanvas structureLabel
@@ -112,18 +112,18 @@ public class InterphaseCellManager : MonoBehaviour
         }
     }
 
-    List<XRBaseInteractable> _interactables;
-    List<XRBaseInteractable> interactables
-    {
-        get
-        {
-            if (_interactables == null)
-            {
-                _interactables = new List<XRBaseInteractable>(GetComponentsInChildren<XRSimpleInteractable>());
-            }
-            return _interactables;
-        }
-    }
+    // List<XRBaseInteractable> _interactables;
+    // List<XRBaseInteractable> interactables
+    // {
+    //     get
+    //     {
+    //         if (_interactables == null)
+    //         {
+    //             _interactables = new List<XRBaseInteractable>(GetComponentsInChildren<XRSimpleInteractable>());
+    //         }
+    //         return _interactables;
+    //     }
+    // }
 
     bool canInteract 
     {
@@ -137,51 +137,49 @@ public class InterphaseCellManager : MonoBehaviour
     {
         structureLabel.gameObject.SetActive( false );
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
-        lobbyPosition = transform.position;
-        lobbyRotation = transform.rotation;
-        uiController = GameObject.Find("RightUIController");
-        ray = uiController.GetComponent<XRRayInteractor>();
-        rayLine = uiController.GetComponent<XRInteractorLineVisual>();
-        validGradient = rayLine.validColorGradient;
-        invalidGradient = rayLine.invalidColorGradient;
-        rayMaxDistance = ray.maxRaycastDistance;
+        // uiController = GameObject.Find("RightUIController");
+        // ray = uiController.GetComponent<XRRayInteractor>();
+        // rayLine = uiController.GetComponent<XRInteractorLineVisual>();
+        // validGradient = rayLine.validColorGradient;
+        // invalidGradient = rayLine.invalidColorGradient;
+        // rayMaxDistance = ray.maxRaycastDistance;
     }
 
-    private void Update()
-    {
-        //Custom behavior to avoid the XRRayInteractor hovering multiple structures at once
-        if (uiController != null && ray != null && !inIsolationMode)
-        {
-            ray.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);
+    // private void Update()
+    // {
+    //     //Custom behavior to avoid the XRRayInteractor hovering multiple structures at once
+    //     if (uiController != null && ray != null && !inIsolationMode)
+    //     {
+    //         ray.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);
 
-            if (raycastHit.collider != null && raycastHit.collider.gameObject.name != null)
-            {
-                ray.maxRaycastDistance = raycastHit.distance;
-                rayNoHit = false;
-            }
+    //         if (raycastHit.collider != null && raycastHit.collider.gameObject.name != null)
+    //         {
+    //             ray.maxRaycastDistance = raycastHit.distance;
+    //             rayNoHit = false;
+    //         }
 
-            else
-            {
-                rayLine.invalidColorGradient = validGradient;
-                if (rayNoHit)
-                {
-                    RemoveHighlightAndLabel(highlightedStructure);
-                    rayLine.invalidColorGradient = invalidGradient;
-                }
-                else
-                {
-                    rayNoHit = true;
-                }
-                ray.maxRaycastDistance = rayMaxDistance;
-            }
-        }
+    //         else
+    //         {
+    //             rayLine.invalidColorGradient = validGradient;
+    //             if (rayNoHit)
+    //             {
+    //                 RemoveHighlightAndLabel(highlightedStructure);
+    //                 rayLine.invalidColorGradient = invalidGradient;
+    //             }
+    //             else
+    //             {
+    //                 rayNoHit = true;
+    //             }
+    //             ray.maxRaycastDistance = rayMaxDistance;
+    //         }
+    //     }
 
-        //Sets the current structure if the XR selection fails.
-        if (ControllerInput.Instance.IsRightTrigger() && highlightedStructure.structureName != VisualGuideManager.Instance.nextStructureName)
-        {
-            SetCurrentStructure();
-        }
-    }
+    //     //Sets the current structure if the XR selection fails.
+    //     if (ControllerInput.Instance.IsRightTrigger() && highlightedStructure.structureName != VisualGuideManager.Instance.nextStructureName)
+    //     {
+    //         SetCurrentStructure();
+    //     }
+    // }
 
     public void SetCurrentStructure ()
     {
@@ -194,7 +192,7 @@ public class InterphaseCellManager : MonoBehaviour
         transformer.enabled = false;
         mover.MoveToOverDuration( currentGameManager.targetDistanceFromCenter * Vector3.forward + currentGameManager.targetHeight * Vector3.up, duration );
         rotator.RotateToOverDuration( Quaternion.Euler( new Vector3( -18f, -60f, 27f) ), duration );
-        scaler.ScaleOverDuration( lobbyScale, duration );
+        scaler.ScaleOverDuration( defaultScale, duration );
         StartCoroutine( currentGameManager.TurnOffInterphaseCellTarget( duration ) );
         structureLabel.gameObject.SetActive( false );
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
@@ -210,8 +208,9 @@ public class InterphaseCellManager : MonoBehaviour
     public void MoveToCenter (float duration)
     {
         mover.MoveToOverDuration( lobbyPosition, duration );
-        rotator.RotateToOverDuration( lobbyRotation, duration );
-        scaler.ScaleOverDuration( lobbyScale, duration );
+        Quaternion rotation = Quaternion.Euler(lobbyRotation);
+        rotator.RotateToOverDuration( rotation, duration );
+        scaler.ScaleOverDuration( defaultScale, duration );
     }
 
     public void HighlightAndLabelStructure (CellStructure _structure)
