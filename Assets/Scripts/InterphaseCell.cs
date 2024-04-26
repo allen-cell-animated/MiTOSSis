@@ -21,14 +21,14 @@ public class InterphaseCell : MonoBehaviour
     // float rayMaxDistance;
     // bool rayNoHit = true;
 
-    LabelCanvas _structureLabel;
-    LabelCanvas structureLabel
+    StructureLabel _structureLabel;
+    StructureLabel structureLabel
     {
         get
         {
             if (_structureLabel == null)
             {
-                _structureLabel = GameObject.FindObjectOfType<LabelCanvas>();
+                _structureLabel = GameObject.FindObjectOfType<StructureLabel>();
             }
             return _structureLabel;
         }
@@ -135,7 +135,7 @@ public class InterphaseCell : MonoBehaviour
 
     void Start ()
     {
-        structureLabel.gameObject.SetActive( false );
+        structureLabel.Disable();
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
         // uiController = GameObject.Find("RightUIController");
         // ray = uiController.GetComponent<XRRayInteractor>();
@@ -194,7 +194,7 @@ public class InterphaseCell : MonoBehaviour
         rotator.RotateToOverDuration( Quaternion.Euler( new Vector3( -18f, -60f, 27f) ), duration );
         scaler.ScaleOverDuration( defaultScale, duration );
         StartCoroutine( currentGameManager.TurnOffInterphaseCellTarget( duration ) );
-        structureLabel.gameObject.SetActive( false );
+        structureLabel.Disable();
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
     }
 
@@ -217,7 +217,6 @@ public class InterphaseCell : MonoBehaviour
     {
         if (canInteract && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
         {
-            structureLabel.gameObject.SetActive( true );
             structureLabel.SetLabel( _structure.structureName, _structure.nameWidth );
             SetHighlightedStructure( _structure );
         }
@@ -228,7 +227,7 @@ public class InterphaseCell : MonoBehaviour
         if (structureLabel != null && _structure == highlightedStructure 
             && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
         {
-            structureLabel.gameObject.SetActive( false );
+            structureLabel.Disable();
             SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
         }
     }

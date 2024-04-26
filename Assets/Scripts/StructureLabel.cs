@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LabelCanvas : MonoBehaviour 
+public class StructureLabel : MonoBehaviour 
 {
-    public Text label;
+    public GameObject label;
+    public Text text;
     public RectTransform panel;
     public Transform cursor;
 
@@ -13,12 +14,18 @@ public class LabelCanvas : MonoBehaviour
     {
         // transform.position = cursor.transform.position;
         // transform.rotation = cursor.transform.rotation;
-    } 
+    }
 
     public void SetLabel (string structureName, float nameWidth)
     {
-        label.text = structureName;
+        text.text = structureName;
         SetPanelSize( nameWidth );
+        label.SetActive( true );
+    }
+
+    public void Disable ()
+    {
+        label.SetActive( false );
     }
 
     void SetPanelSize (float _width)

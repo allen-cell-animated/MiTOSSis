@@ -6,10 +6,9 @@ using System;
 
 public class UIManager : MonoBehaviour 
 {
-    public GameObject dataInfoPanel;
-    public InfoCanvas structureInfoPanel;
+    public CollapsiblePanel collapsiblePanel;
     public ProgressPanel progressPanel;
-    public Leaderboard leaderboardPanelCanvas;
+    public Leaderboard leaderboardUI;
     public GameObject lobbyPanel;
     public Text nextStructureLabel;
     public CountdownPanel countdownPanel;
@@ -55,9 +54,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayScore (float elapsedTime)
     {
-        leaderboardPanelCanvas.transform.parent.gameObject.SetActive( true );
-
-        leaderboardPanelCanvas.RecordNewScore( elapsedTime );
+        leaderboardUI.RecordNewScore( elapsedTime );
     }
 
     public void EnterPlayMode (StructureData structureData)
@@ -66,8 +63,7 @@ public class UIManager : MonoBehaviour
         progressPanel.SetSelected( structureData.structureName, true );
         progressPanel.SetButtonLabel( false );
         progressPanel.gameObject.SetActive(false);
-        structureInfoPanel.SetContent( structureData );
-        dataInfoPanel.gameObject.SetActive( false );
+        collapsiblePanel.SetStructureContent( structureData );
         lobbyPanel.gameObject.SetActive( false );
         countdownPanel.gameObject.SetActive( true );
         countdownPanel.StartCountdown();
@@ -83,16 +79,15 @@ public class UIManager : MonoBehaviour
     public void EnterSuccessMode (string structureName, float timeSeconds)
     {
         DisplayScore( timeSeconds );
-        structureInfoPanel.gameObject.SetActive( true );
+        collapsiblePanel.Enable();
         progressPanel.SetButtonLabel( true );
     }
 
     public void EnterLobbyMode (string currentStructureName)
     {
-        leaderboardPanelCanvas.Close();
+        leaderboardUI.Close();
         progressPanel.animator.SetTrigger( "Close" );
-        dataInfoPanel.gameObject.SetActive( true );
-        structureInfoPanel.gameObject.SetActive( false );
+        collapsiblePanel.SetDataContent();
         lobbyPanel.gameObject.SetActive( true );
         lobbyPanel.GetComponent<Animator>().SetTrigger( "Open" );
 

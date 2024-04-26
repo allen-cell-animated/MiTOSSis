@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour 
 {
+    public GameObject panel;
     public Keyboard keyboard;
 
     [SerializeField]
@@ -82,6 +83,7 @@ public class Leaderboard : MonoBehaviour
 
         ClearDisplay();
         DisplayHighscores();
+        panel.SetActive( true );
     }
 
     void DisplayHighscores ()
@@ -124,9 +126,9 @@ public class Leaderboard : MonoBehaviour
             Debug.LogWarning( "Couldn't load prefab for " + (score == currentScore ? "LeaderboardEntryCurrent" : "LeaderboardEntry") );
             return null;
         }
-        GameObject entry = Instantiate( prefab, transform ) as GameObject;
+        GameObject entry = Instantiate( prefab, panel.transform ) as GameObject;
 
-        entry.GetComponent<RectTransform>().anchoredPosition = new Vector2( 4f, -20f - 10f * listIndex );
+        entry.GetComponent<RectTransform>().anchoredPosition = new Vector2( 0, -20f - 10f * listIndex );
         entry.GetComponent<LeaderboardEntry>().Populate( rank, score.playerName, score.timeSeconds );
 
         if (score == currentScore)
@@ -154,7 +156,7 @@ public class Leaderboard : MonoBehaviour
 
     public void Close ()
     {
-        gameObject.transform.parent.gameObject.SetActive( false );
+        panel.SetActive( false );
     }
 }
 
