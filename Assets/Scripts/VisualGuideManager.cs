@@ -82,7 +82,13 @@ public class VisualGuideManager : MonoBehaviour
 
     public void SelectNextStructureAndPlay ()
     {
-        interphaseCell.SelectStructure( structureNames[currentStuctureIndex] );
+        string structureName = structureNames[currentStuctureIndex];
+        if (interphaseCell.SelectStructure( structureName )) {
+            StartGame( structureName );
+        }
+        else {
+            UIManager.Instance.Log( "Failed to select structure at index " + currentStuctureIndex );
+        }
     }
 
     public void StartGame (string structureName)

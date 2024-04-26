@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
         progressPanelCanvas.transform.parent.gameObject.SetActive(false);
         structureInfoPanel.SetContent( structureData );
         dataInfoPanel.gameObject.SetActive( false );
-        playPanelCanvas.transform.parent.gameObject.SetActive( false );
+        // playPanelCanvas.transform.parent.gameObject.SetActive( false );
         countdownCanvas.gameObject.SetActive( true );
         countdownCanvas.StartCountdown();
     }

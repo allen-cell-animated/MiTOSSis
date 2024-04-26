@@ -253,15 +253,16 @@ public class InterphaseCellManager : MonoBehaviour
         }
     }
 
-    public void SelectStructure (string _structureName)
+    public bool SelectStructure (string _structureName)
     {
         CellStructure _structure = structures.Find( s => s.structureName == _structureName );
         if (_structure != null)
         {
             selectedStructure = _structure;
             IsolateSelectedStructure();
-            VisualGuideManager.Instance.StartGame( _structureName );
+            return true;
         }
+        return false;
     }
 
     void IsolateSelectedStructure ()
