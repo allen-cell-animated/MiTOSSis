@@ -7,7 +7,6 @@ public class Transformer : MonoBehaviour
     public bool transforming;
     public bool canScale = true;
     public bool canRotate = true;
-    public LineRenderer scaleLine;
 
     Vector3 startScale;
     float startControllerDistance;
@@ -18,21 +17,40 @@ public class Transformer : MonoBehaviour
     Vector3 maxScale = new Vector3( 3f, 3f, 3f );
     Vector3[] linePoints = new Vector3[2];
 
+    LineRenderer _scaleLine;
+    LineRenderer scaleLine
+    {
+        get
+        {
+            if (_scaleLine == null)
+            {
+                GameObject prefab = Resources.Load( "ScaleLine" ) as GameObject;
+                if (prefab == null)
+                {
+                    UIManager.Instance.Log( "WARNING: Couldn't load prefab for ScaleLine" );
+                    return null;
+                }
+                _scaleLine = Instantiate( prefab ).GetComponent<LineRenderer>();
+            }
+            return _scaleLine;
+        }
+    }
+
     void Update ()
     {
-        // UpdateTransforming();
+        UpdateTransforming();
     }
 
     // TRANSLATING --------------------------------------------------------------------------------------------------
 
     void UpdateTransforming ()
     {
-        if (ControllerInput.Instance.IsRightGrip() && ControllerInput.Instance.IsLeftGrip())
+        if (ControllerInput.Instance.GripsDown())
         {
             if (!transforming)
             {
                 transforming = true;
-                ControllerInput.Instance.ToggleRayInteractor( false );
+                ControllerInput.Instance.ToggleRayInteractors( false );
                 StartScaling();
                 StartRotating();
             }
@@ -46,7 +64,7 @@ public class Transformer : MonoBehaviour
         else if (transforming)
         {
             ToggleLine( false );
-            ControllerInput.Instance.ToggleRayInteractor( true );
+            ControllerInput.Instance.ToggleRayInteractors( true );
             transforming = false;
         }
     }
@@ -144,10 +162,10 @@ public class Transformer : MonoBehaviour
 
     void ToggleLine (bool _active)
     {
-        Vector3 left = ControllerInput.Instance.LeftControllerPosition();
-        Vector3 right = ControllerInput.Instance.RightControllerPosition();
-        if (_active && left != null && right != null)
+        if (_active)
         {
+            Vector3 left = ControllerInput.Instance.LeftControllerPosition();
+            Vector3 right = ControllerInput.Instance.RightControllerPosition();
             if (!scaleLine.gameObject.activeSelf)
             {
                 scaleLine.gameObject.SetActive( true );

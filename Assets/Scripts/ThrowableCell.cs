@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using cakeslice;
+using Oculus.Interaction;
 
 public class ThrowableCell : MonoBehaviour 
 {
@@ -96,18 +97,25 @@ public class ThrowableCell : MonoBehaviour
         }
     }
 
+    GameObject _grabInteraction;
+    public GameObject grabInteraction // TODO
+    {
+        get
+        {
+            if (_grabInteraction == null)
+            {
+                _grabInteraction = GetComponentInChildren<Grabbable>().gameObject;
+            }
+            return _grabInteraction;
+        }
+    }
+
     public bool isMoving
     {
         get
         {
             return !(body.isKinematic || body.velocity.magnitude < 0.1f);
         }
-    }
-
-    public void AttachToController (object args)
-    {
-        UIManager.Instance.Log(args.ToString());
-        // transform.SetParent(args.interactor.transform.GetChild(0));
     }
 
     void OnCollisionEnter (Collision collision)
@@ -130,6 +138,7 @@ public class ThrowableCell : MonoBehaviour
     {
         if (gameManager != null)
         {
+            // grabInteraction.SetActive( false );
             attachedTarget = target;
             attachedTarget.Bind();
 
@@ -160,30 +169,13 @@ public class ThrowableCell : MonoBehaviour
             gameManager.RemoveCorrectHit();
             attachedTarget.Release();
             attachedTarget = null;
+            // grabInteraction.SetActive( true );
         }
 
         body.isKinematic = false;
         if (resetVelocity)
         {
             body.velocity = Vector3.zero;
-        }
-    }
-    void Awake()
-    {
-        CreateAttach();
-    }
-
-    private void CreateAttach()
-    {
-        if (TryGetComponent(out XRGrabInteractable interactable))
-        {
-            GameObject attachObject = new GameObject("Attach");
-
-            attachObject.transform.SetParent(transform);
-            attachObject.transform.localPosition = Vector3.zero;
-            attachObject.transform.localRotation = Quaternion.identity;
-
-            interactable.attachTransform = attachObject.transform;
         }
     }
 }

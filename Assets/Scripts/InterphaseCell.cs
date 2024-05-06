@@ -145,7 +145,7 @@ public class InterphaseCell : MonoBehaviour
         // rayMaxDistance = ray.maxRaycastDistance;
     }
 
-    // private void Update()
+    // private void Update() // TODO
     // {
     //     //Custom behavior to avoid the XRRayInteractor hovering multiple structures at once
     //     if (uiController != null && ray != null && !inIsolationMode)

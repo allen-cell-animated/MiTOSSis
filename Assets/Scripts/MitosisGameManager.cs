@@ -100,7 +100,7 @@ public class MitosisGameManager : MonoBehaviour
             }
 
             throwableCells[i] = (Instantiate( prefab, transform ) as GameObject).GetComponent<ThrowableCell>();
-            throwableCells[i].outline.enabled = false;
+            throwableCells[i].outline.enabled = true;
             throwableCells[i].transform.position = transform.position + randomPositionInThrowableSpawnArea;
             throwableCells[i].transform.rotation = Random.rotation;
             throwableCells[i].transform.localScale = throwableSpawnScale * Vector3.one;
@@ -161,7 +161,7 @@ public class MitosisGameManager : MonoBehaviour
             return;
         }
         GameObject arrowPrefab = Resources.Load( "Arrow" ) as GameObject;
-        if (targetPrefab == null)
+        if (arrowPrefab == null)
         {
             UIManager.Instance.Log( "WARNING: Couldn't load prefab for Arrow" );
             return;
