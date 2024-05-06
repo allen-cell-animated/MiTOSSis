@@ -190,7 +190,7 @@ public class InterphaseCell : MonoBehaviour
     {
         float duration = 1f;
         transformer.enabled = false;
-        mover.MoveToOverDuration( currentGameManager.targetDistanceFromCenter * Vector3.forward + currentGameManager.targetHeight * Vector3.up, duration );
+        mover.MoveToOverDuration( currentGameManager.GetTargetDistanceFromCenter() * Vector3.forward + currentGameManager.targetHeight * Vector3.up, duration );
         rotator.RotateToOverDuration( Quaternion.Euler( new Vector3( -18f, -60f, 27f) ), duration );
         scaler.ScaleOverDuration( defaultScale, duration );
         StartCoroutine( currentGameManager.TurnOffInterphaseCellTarget( duration ) );

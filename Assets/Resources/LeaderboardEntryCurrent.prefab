@@ -172,7 +172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.8
-  m_Text: Blaliens
+  m_Text: 
 --- !u!1 &1882626653158362
 GameObject:
   m_ObjectHideFlags: 0

@@ -139,6 +139,7 @@ public class VisualGuideManager : MonoBehaviour
 
     public void AnimateCellSuccess (GameObject cell)
     {
+        UIManager.Instance.Log( "VisualGuideManager: animate cell success" );
         GameObject prefab = Resources.Load( "CellAnimator" ) as GameObject;
         if (prefab == null)
         {

@@ -9,9 +9,8 @@ public class MitosisGameManager : MonoBehaviour
     public float throwableSpawnHeight = 3f;
     public Vector2 throwableSpawnRingExtents = new Vector2( 0.5f, 0.6f );
     public float throwableSpawnScale = 0.4f;
-    public float throwableBoundsRadius = 1.5f;
     public float targetHeight = 1.5f;
-    public float targetDistanceFromCenter = 2.2f;
+    public float funnelRadius = 4f;
 
     string[] throwableNames = { "Prophase", "Prometaphase", "Metaphase", "Anaphase", "Telophase"};
     ThrowableCell[] throwableCells;
@@ -23,11 +22,24 @@ public class MitosisGameManager : MonoBehaviour
     int animationPhase;
     bool destroyWhenOutOfBounds;
     float startTime;
+    GameObject wallParent;
+    float defaultThrowableBoundsRadius = 1.5f;
+    float throwableBoundsRadius = 1.5f;
+    float defaultTargetDistanceFromBounds = 1f;
+    float targetDistanceFromCenter = 2f;
+
+    public float GetTargetDistanceFromCenter ()
+    {
+        return targetDistanceFromCenter;
+    }
 
     public void StartGame (string _structureName, float timeBeforeCellDrop)
     {
+        UIManager.Instance.Log( "MitosisGameManager: start game" );
         correctlyPlacedThrowables = 0;
         currentStructureName = _structureName;
+        throwableBoundsRadius = GetBoundaryRadius();
+        targetDistanceFromCenter = throwableBoundsRadius + defaultTargetDistanceFromBounds;
         SpawnWalls();
         SpawnTargetsAndArrows();
         StartCoroutine( SpawnThrowables( currentStructureName, timeBeforeCellDrop ) );
@@ -202,22 +214,51 @@ public class MitosisGameManager : MonoBehaviour
         }
     }
 
+    Vector3[] GetBoundaryPoints ()
+    {
+        bool configured = OVRManager.boundary.GetConfigured();
+        if (configured)
+        {
+            return OVRManager.boundary.GetGeometry( OVRBoundary.BoundaryType.PlayArea );
+        }
+        else
+        {
+            UIManager.Instance.Log( "Boundary not configured." );
+            return null;
+        }
+    }
+
+    float GetBoundaryRadius ()
+    {
+        Vector3[] boundaryPoints = GetBoundaryPoints();
+        if (boundaryPoints == null || boundaryPoints.Length < 3)
+        {
+            return defaultThrowableBoundsRadius;
+        }
+        Vector3 center = Vector3.zero;
+        for (int i = 0; i < boundaryPoints.Length; i++)
+        {
+            center += boundaryPoints[i];
+        }
+        center /= boundaryPoints.Length;
+        float distances = 0;
+        for (int i = 0; i < boundaryPoints.Length; i++)
+        {
+            distances += (boundaryPoints[i] - center).magnitude;
+        }
+        return distances / boundaryPoints.Length;
+    }
+
     public void RecordCorrectHit ()
     {
         correctlyPlacedThrowables++;
 
+        UIManager.Instance.Log( "THROWABLES:" + correctlyPlacedThrowables + " >=? " + throwableNames.Length );
+
         if (correctlyPlacedThrowables >= throwableNames.Length)
         {
             VisualGuideManager.Instance.EnterSuccessMode( Time.time - startTime );
-            SetThrowablesGrabbable( false );
-        }
-    }
-
-    void SetThrowablesGrabbable (bool grabbable)
-    {
-        foreach (ThrowableCell cell in throwableCells)
-        {
-            cell.isGrabbable = grabbable;
+            // TODO make cells not grabbable
         }
     }
 

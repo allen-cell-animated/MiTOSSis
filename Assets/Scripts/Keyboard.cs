@@ -13,18 +13,29 @@ public class Keyboard : MonoBehaviour
     private string clearText = "clear all";
 
 
+    public void Enable ()
+    {
+        gameObject.SetActive( true );
+        currentText = "";
+    }
+
+    void UpdateCurrentText (string newText)
+    {
+        currentText = newText;
+        UIManager.Instance.leaderboardUI.UpdateCurrentPlayerName( currentText );
+
+    }
+
     public void ClickKey (string character)
     {
-        currentText += character;
-        UIManager.Instance.leaderboardUI.UpdateCurrentPlayerName( currentText );
+        UpdateCurrentText( currentText + character );
     }
 
     public void Backspace ()
     {
         if (currentText != null && currentText.Length > 0)
         {
-            currentText = currentText.Substring(0, currentText.Length - 1);
-            UIManager.Instance.leaderboardUI.UpdateCurrentPlayerName( currentText );
+            UpdateCurrentText( currentText.Substring( 0, currentText.Length - 1 ) );
         }
     }
 
@@ -35,23 +46,13 @@ public class Keyboard : MonoBehaviour
 
     public void ClearText ()
     {
-        currentText = "";
+        UpdateCurrentText( "" );
     }
 
-    public void PromptClear()
+    public void ToggleClear ()
     {
-        clearButton.GetComponentInChildren<Text>().text = cancelText;
-        if (!clearReady)
-        {
-            confirmButton.SetActive(true);
-            clearReady = true;
-            clearButton.GetComponentInChildren<Text>().text = cancelText;
-        }
-        else
-        {
-            confirmButton.SetActive(false);
-            clearReady = false;
-            clearButton.GetComponentInChildren<Text>().text = clearText;
-        }
+        clearReady = !clearReady;
+        confirmButton.SetActive(clearReady);
+        clearButton.GetComponentInChildren<Text>().text = clearReady ? cancelText : clearText;
     }
 }

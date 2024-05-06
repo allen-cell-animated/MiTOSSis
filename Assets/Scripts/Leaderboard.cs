@@ -6,6 +6,7 @@ using UnityEngine;
 public class Leaderboard : MonoBehaviour 
 {
     public GameObject panel;
+    public GameObject entries;
     public Keyboard keyboard;
 
     [SerializeField]
@@ -74,12 +75,10 @@ public class Leaderboard : MonoBehaviour
 
     public void RecordNewScore (float timeSeconds)
     {
-        Debug.Log("record " + timeSeconds);
         currentScore = new HighScore( "[your name here]", timeSeconds );
         highScores.Add( currentScore );
         highScores.Sort();
-        // keyboard.gameObject.SetActive(true);
-        // keyboard.ClearText();
+        keyboard.Enable();
 
         ClearDisplay();
         DisplayHighscores();
@@ -126,7 +125,7 @@ public class Leaderboard : MonoBehaviour
             Debug.LogWarning( "Couldn't load prefab for " + (score == currentScore ? "LeaderboardEntryCurrent" : "LeaderboardEntry") );
             return null;
         }
-        GameObject entry = Instantiate( prefab, panel.transform ) as GameObject;
+        GameObject entry = Instantiate( prefab, entries.transform ) as GameObject;
 
         entry.GetComponent<RectTransform>().anchoredPosition = new Vector2( 0, -20f - 10f * listIndex );
         entry.GetComponent<LeaderboardEntry>().Populate( rank, score.playerName, score.timeSeconds );
@@ -141,8 +140,8 @@ public class Leaderboard : MonoBehaviour
 
     void ClearDisplay ()
     {
-        LeaderboardEntry[] entries = GetComponentsInChildren<LeaderboardEntry>();
-        foreach (LeaderboardEntry entry in entries)
+        LeaderboardEntry[] entriesToDestroy = GetComponentsInChildren<LeaderboardEntry>();
+        foreach (LeaderboardEntry entry in entriesToDestroy)
         {
             Destroy( entry.gameObject );
         }

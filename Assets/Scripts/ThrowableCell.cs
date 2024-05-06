@@ -16,7 +16,7 @@ public class ThrowableCell : MonoBehaviour
     public Target attachedTarget;
     public float lastSpawnTime;
     public bool isGrabbable = true;
-    public bool isGrabbed;
+    public bool isGrabbed; // TODO
 
     MitosisGameManager _gameManager;
     MitosisGameManager gameManager
@@ -113,7 +113,7 @@ public class ThrowableCell : MonoBehaviour
     void OnCollisionEnter (Collision collision)
     {
         Target target = collision.gameObject.GetComponent<Target>();
-        if (target != null)
+        if (target != null && attachedTarget == null)
         {
             if (target.goalName.Contains( name.Substring( 0, name.Length - 11 ) ))
             {
