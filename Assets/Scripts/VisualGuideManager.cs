@@ -176,7 +176,7 @@ public class VisualGuideManager : MonoBehaviour
 
     void Cleanup ()
     {
-
+        // TODO
         // foreach (OffsetInteractable offset in Resources.FindObjectsOfTypeAll(typeof(OffsetInteractable)) as OffsetInteractable[])
         // {
         //     offset.colliders.Clear();

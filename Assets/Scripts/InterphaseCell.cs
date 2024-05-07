@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine.XR.Interaction.Toolkit;
 
 public class InterphaseCell : MonoBehaviour 
 {
@@ -111,19 +110,6 @@ public class InterphaseCell : MonoBehaviour
             return _animator;
         }
     }
-
-    // List<XRBaseInteractable> _interactables;
-    // List<XRBaseInteractable> interactables
-    // {
-    //     get
-    //     {
-    //         if (_interactables == null)
-    //         {
-    //             _interactables = new List<XRBaseInteractable>(GetComponentsInChildren<XRSimpleInteractable>());
-    //         }
-    //         return _interactables;
-    //     }
-    // }
 
     bool canInteract 
     {
