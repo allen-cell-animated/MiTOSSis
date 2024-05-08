@@ -1,24 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Oculus.Interaction;
+using System;
 
 public class InterphaseCell : MonoBehaviour 
 {
-    bool inIsolationMode;
-    CellStructure highlightedStructure;
-    CellStructure selectedStructure;
     public Vector3 lobbyPosition;
     public Vector3 lobbyRotation;
     public float defaultScale;
+    
+    bool inIsolationMode;
+    CellStructure highlightedStructure;
+    CellStructure selectedStructure;
     float lastSetStructureTime = -1f;
     float waitTimeToHoverStructure = 0.3f;
-    // GameObject uiController;
-    // XRRayInteractor ray;
-    // XRInteractorLineVisual rayLine;
-    // Gradient validGradient;
-    // Gradient invalidGradient;
-    // float rayMaxDistance;
-    // bool rayNoHit = true;
+    List<CellStructure> hoveredStructures = new List<CellStructure>();
 
     StructureLabel _structureLabel;
     StructureLabel structureLabel
@@ -123,49 +120,47 @@ public class InterphaseCell : MonoBehaviour
     {
         structureLabel.Disable();
         SetHighlightedStructure( VisualGuideManager.Instance.nextStructureName );
-        // uiController = GameObject.Find("RightUIController");
-        // ray = uiController.GetComponent<XRRayInteractor>();
-        // rayLine = uiController.GetComponent<XRInteractorLineVisual>();
-        // validGradient = rayLine.validColorGradient;
-        // invalidGradient = rayLine.invalidColorGradient;
-        // rayMaxDistance = ray.maxRaycastDistance;
     }
 
-    // private void Update() // TODO
-    // {
-    //     //Custom behavior to avoid the XRRayInteractor hovering multiple structures at once
-    //     if (uiController != null && ray != null && !inIsolationMode)
-    //     {
-    //         ray.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);
+    public void HoverStructure (CellStructure structure)
+    {
+        if (hoveredStructures.IndexOf( structure ) < 0)
+        {
+            hoveredStructures.Add( structure );
+        }
+    }
 
-    //         if (raycastHit.collider != null && raycastHit.collider.gameObject.name != null)
-    //         {
-    //             ray.maxRaycastDistance = raycastHit.distance;
-    //             rayNoHit = false;
-    //         }
+    public void UnhoverStructure (CellStructure structure)
+    {
+        if (hoveredStructures.IndexOf( structure ) >= 0)
+        {
+            hoveredStructures.Remove( structure );
+        }
+    }
 
-    //         else
-    //         {
-    //             rayLine.invalidColorGradient = validGradient;
-    //             if (rayNoHit)
-    //             {
-    //                 RemoveHighlightAndLabel(highlightedStructure);
-    //                 rayLine.invalidColorGradient = invalidGradient;
-    //             }
-    //             else
-    //             {
-    //                 rayNoHit = true;
-    //             }
-    //             ray.maxRaycastDistance = rayMaxDistance;
-    //         }
-    //     }
+    private void Update() 
+    {
+        if (!inIsolationMode)
+        {
+            if (hoveredStructures.Count == 1)
+            {
+                HighlightAndLabelStructure( hoveredStructures[0] );
+            }
+            else
+            {
+                RemoveHighlightAndLabel( highlightedStructure );
+            }
+        }
 
-    //     //Sets the current structure if the XR selection fails.
-    //     if (ControllerInput.Instance.IsRightTrigger() && highlightedStructure.structureName != VisualGuideManager.Instance.nextStructureName)
-    //     {
-    //         SetCurrentStructure();
-    //     }
-    // }
+        if (
+            ControllerInput.Instance.RightTriggerDown()
+            && !highlightedStructure.isNucleus
+            && highlightedStructure.structureName != VisualGuideManager.Instance.nextStructureName
+        )
+        {
+            SetCurrentStructure();
+        }
+    }
 
     public void SetCurrentStructure ()
     {
@@ -199,16 +194,17 @@ public class InterphaseCell : MonoBehaviour
         scaler.ScaleOverDuration( defaultScale, duration );
     }
 
-    public void HighlightAndLabelStructure (CellStructure _structure)
+    void HighlightAndLabelStructure (CellStructure _structure)
     {
-        if (canInteract && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
+        if (canInteract && structureLabel != null && _structure != highlightedStructure
+            && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)
         {
             structureLabel.SetLabel( _structure.structureName, _structure.nameWidth );
             SetHighlightedStructure( _structure );
         }
     }
 
-    public void RemoveHighlightAndLabel (CellStructure _structure)
+    void RemoveHighlightAndLabel (CellStructure _structure)
     {
         if (structureLabel != null && _structure == highlightedStructure 
             && Time.time - lastSetStructureTime >= waitTimeToHoverStructure)

@@ -60,8 +60,6 @@ public class VisualGuideManager : MonoBehaviour
         {
             currentStuctureIndex = index;
 
-            UIManager.Instance.Log("SELECT " + structureNames[currentStuctureIndex]);
-
             UIManager.Instance.nextStructureLabel.text = structureNames[currentStuctureIndex];
             UIManager.Instance.nextStructureLabel.GetComponent<Animator>().SetTrigger( "animate" );
         }
@@ -72,8 +70,6 @@ public class VisualGuideManager : MonoBehaviour
         if (currentMode == VisualGuideGameMode.Lobby)
         {
             currentStuctureIndex = Array.IndexOf(structureNames, name);
-
-            UIManager.Instance.Log("SELECT " + structureNames[currentStuctureIndex]);
 
             UIManager.Instance.nextStructureLabel.text = structureNames[currentStuctureIndex];
             UIManager.Instance.nextStructureLabel.GetComponent<Animator>().SetTrigger("animate");
@@ -139,7 +135,6 @@ public class VisualGuideManager : MonoBehaviour
 
     public void AnimateCellSuccess (GameObject cell)
     {
-        UIManager.Instance.Log( "VisualGuideManager: animate cell success" );
         GameObject prefab = Resources.Load( "CellAnimator" ) as GameObject;
         if (prefab == null)
         {

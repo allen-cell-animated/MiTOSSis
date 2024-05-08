@@ -35,7 +35,6 @@ public class MitosisGameManager : MonoBehaviour
 
     public void StartGame (string _structureName, float timeBeforeCellDrop)
     {
-        UIManager.Instance.Log( "MitosisGameManager: start game" );
         correctlyPlacedThrowables = 0;
         currentStructureName = _structureName;
         throwableBoundsRadius = GetBoundaryRadius();
@@ -223,7 +222,7 @@ public class MitosisGameManager : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.Log( "Boundary not configured." );
+            UIManager.Instance.Log( "WARNING: Boundary not configured." );
             return null;
         }
     }
@@ -253,12 +252,13 @@ public class MitosisGameManager : MonoBehaviour
     {
         correctlyPlacedThrowables++;
 
-        UIManager.Instance.Log( "THROWABLES:" + correctlyPlacedThrowables + " >=? " + throwableNames.Length );
-
         if (correctlyPlacedThrowables >= throwableNames.Length)
         {
             VisualGuideManager.Instance.EnterSuccessMode( Time.time - startTime );
-            // TODO make cells not grabbable
+            foreach (ThrowableCell throwableCell in throwableCells)
+            {
+                throwableCell.grabInteraction.SetActive( false );
+            }
         }
     }
 

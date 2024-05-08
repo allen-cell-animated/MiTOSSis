@@ -10,12 +10,6 @@ public class StructureLabel : MonoBehaviour
     public RectTransform panel;
     public Transform cursor;
 
-    void Update ()
-    {
-        // transform.position = cursor.transform.position;
-        // transform.rotation = cursor.transform.rotation;
-    }
-
     public void SetLabel (string structureName, float nameWidth)
     {
         text.text = structureName;

@@ -98,7 +98,7 @@ public class ThrowableCell : MonoBehaviour
     }
 
     GameObject _grabInteraction;
-    public GameObject grabInteraction // TODO
+    public GameObject grabInteraction
     {
         get
         {
@@ -138,7 +138,7 @@ public class ThrowableCell : MonoBehaviour
     {
         if (gameManager != null)
         {
-            // grabInteraction.SetActive( false );
+            grabInteraction.SetActive( false );
             attachedTarget = target;
             attachedTarget.Bind();
 
@@ -169,7 +169,7 @@ public class ThrowableCell : MonoBehaviour
             gameManager.RemoveCorrectHit();
             attachedTarget.Release();
             attachedTarget = null;
-            // grabInteraction.SetActive( true );
+            grabInteraction.SetActive( true );
         }
 
         body.isKinematic = false;

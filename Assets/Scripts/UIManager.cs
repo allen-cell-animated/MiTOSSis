@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour
 
     public void EnterPlayMode (StructureData structureData)
     {
-        UIManager.Instance.Log( "UIManager: EnterPlayMode" );
         progressPanel.SetSelected( structureData.structureName, true );
         progressPanel.SetButtonLabel( false );
         progressPanel.gameObject.SetActive(false);
@@ -71,7 +70,6 @@ public class UIManager : MonoBehaviour
 
     public void StartTimer ()
     {
-        UIManager.Instance.Log( "UIManager: start timer" );
         VisualGuideManager.Instance.currentGameManager.StartTimer();
         progressPanel.gameObject.SetActive( true );
     }

@@ -5,8 +5,7 @@ using Oculus.Interaction;
 
 public class ControllerInput : MonoBehaviour 
 {
-    public RayInteractor leftRay;
-    public RayInteractor rightRay;
+    public RayInteractor rayInteractor;
 
     static ControllerInput _Instance;
     public static ControllerInput Instance
@@ -29,6 +28,16 @@ public class ControllerInput : MonoBehaviour
         );
     }
 
+    public bool LeftTriggerDown ()
+    {
+        return OVRInput.Get( OVRInput.RawButton.LIndexTrigger );
+    }
+
+    public bool RightTriggerDown ()
+    {
+        return OVRInput.Get( OVRInput.RawButton.RIndexTrigger );
+    }
+
     public Vector3 LeftControllerPosition()
     {
         if (!OVRInput.GetControllerPositionValid( OVRInput.Controller.LTouch ))
@@ -49,7 +58,6 @@ public class ControllerInput : MonoBehaviour
 
     public void ToggleRayInteractors(bool _active)
     {
-        leftRay.gameObject.SetActive( _active );
-        rightRay.gameObject.SetActive( _active );
+        rayInteractor.gameObject.SetActive( _active );
     }
 }

@@ -806,8 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da04d65d59fe4fd298deea39f3eca65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftRay: {fileID: 6944630200799335364}
-  rightRay: {fileID: 6814554526949863604}
+  rayInteractor: {fileID: 6814554526949863604}
 --- !u!114 &466564654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39842,7 +39841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4284279769386186678
 GameObject:
   m_ObjectHideFlags: 0
@@ -47827,7 +47826,6 @@ MonoBehaviour:
   _interactors:
   - {fileID: 4753157754217179630}
   - {fileID: 8161315797821406183}
-  - {fileID: 6944630200799335364}
   _activeState: {fileID: 0}
   _candidateComparer: {fileID: 0}
   _maxIterationsPerFrame: 3
@@ -69135,7 +69133,7 @@ GameObject:
   - component: {fileID: 7987519865974468093}
   - component: {fileID: 7987519865974468092}
   - component: {fileID: 7987519865974468094}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69212,7 +69210,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: HighlightAndLabelStructure
+        m_MethodName: HoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7285139911717250329}
@@ -69227,7 +69225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: RemoveHighlightAndLabel
+        m_MethodName: UnhoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7285139911717250329}
@@ -69239,19 +69237,7 @@ MonoBehaviour:
         m_CallState: 2
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7987519866104213251}
-        m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: SetCurrentStructure
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -69387,7 +69373,7 @@ GameObject:
   - component: {fileID: 7987519866061024617}
   - component: {fileID: 7987519866061024616}
   - component: {fileID: 7987519866061024618}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: golgi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69538,7 +69524,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: HighlightAndLabelStructure
+        m_MethodName: HoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1715172923464548913}
@@ -69553,7 +69539,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: RemoveHighlightAndLabel
+        m_MethodName: UnhoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1715172923464548913}
@@ -69565,19 +69551,7 @@ MonoBehaviour:
         m_CallState: 2
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7987519866104213251}
-        m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: SetCurrentStructure
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -69604,7 +69578,7 @@ GameObject:
   - component: {fileID: 7987519866084525617}
   - component: {fileID: 7987519866084525616}
   - component: {fileID: 7987519866084525618}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: mitos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69770,7 +69744,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: HighlightAndLabelStructure
+        m_MethodName: HoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 379560264419685093}
@@ -69785,7 +69759,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: RemoveHighlightAndLabel
+        m_MethodName: UnhoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 379560264419685093}
@@ -69797,19 +69771,7 @@ MonoBehaviour:
         m_CallState: 2
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7987519866104213251}
-        m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: SetCurrentStructure
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -69972,7 +69934,7 @@ GameObject:
   - component: {fileID: 7987519866319481399}
   - component: {fileID: 7987519866319481398}
   - component: {fileID: 7987519866319481400}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: MTs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70073,7 +70035,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: HighlightAndLabelStructure
+        m_MethodName: HoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3813726480103546483}
@@ -70088,7 +70050,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: RemoveHighlightAndLabel
+        m_MethodName: UnhoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3813726480103546483}
@@ -70100,19 +70062,7 @@ MonoBehaviour:
         m_CallState: 2
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7987519866104213251}
-        m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: SetCurrentStructure
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -70154,7 +70104,7 @@ GameObject:
   - component: {fileID: 7987519866958267969}
   - component: {fileID: 7987519866958267968}
   - component: {fileID: 7987519866958267970}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: nucleus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70321,7 +70271,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: HighlightAndLabelStructure
+        m_MethodName: HoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7987519866958267965}
@@ -70336,7 +70286,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7987519866104213251}
         m_TargetAssemblyTypeName: InterphaseCell, Assembly-CSharp
-        m_MethodName: RemoveHighlightAndLabel
+        m_MethodName: UnhoverStructure
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7987519866958267965}
