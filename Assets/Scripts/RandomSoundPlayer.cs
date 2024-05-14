@@ -15,4 +15,12 @@ public class RandomSoundPlayer : MonoBehaviour
     {
         return sounds[Random.Range(0, sounds.Length)];
     }
+
+    public void SetVolume (float _volume)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].volume = _volume;
+        }
+    }
 }

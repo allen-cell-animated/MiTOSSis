@@ -41,6 +41,7 @@ public class Target : MonoBehaviour
     {
         goalName = _goalName;
         label.text = _goalName;
+        successAudio.SetVolume( 0.25f );
     }
 
     public void Bind ()
