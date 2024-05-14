@@ -133,7 +133,7 @@ public class MitosisGameManager : MonoBehaviour
             {
                 if (throwableCell != null && throwableCell.attachedTarget == null 
                     && Time.time - throwableCell.lastSpawnTime > 2f && (!throwableCell.isMoving || throwableCell.transform.position.y < -1f)
-                    && !throwableCell.isGrabbed && ThrowableIsOutOfBounds( throwableCell.transform ))
+                    && ThrowableIsOutOfBounds( throwableCell.transform ))
                 {
                     if (destroyWhenOutOfBounds)
                     {
@@ -275,6 +275,14 @@ public class MitosisGameManager : MonoBehaviour
         for (int i = 0; i < throwableCells.Length; i++)
         {
             VisualGuideManager.Instance.AnimateCellSuccess( throwableCells[i].gameObject );
+        }
+    }
+
+    public void PlayTargetSuccessAudio ()
+    {
+        for (int i = 0; i < targets.Length; i++)
+        {
+            targets[i].successAudio.Play();
         }
     }
 }

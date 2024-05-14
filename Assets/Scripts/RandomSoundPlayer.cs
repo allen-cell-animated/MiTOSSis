@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RandomSoundPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public AudioSource[] sounds;
+
+    public void Play()
     {
-        
+        randomSound().Play();
     }
 
-    // Update is called once per frame
-    void Update()
+    private AudioSource randomSound ()
     {
-        
+        return sounds[Random.Range(0, sounds.Length)];
     }
 }

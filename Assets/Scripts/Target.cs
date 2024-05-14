@@ -8,6 +8,8 @@ public class Target : MonoBehaviour
     public string goalName;
     public SpriteRenderer visualization;
     public Text label;
+    public RandomSoundPlayer successAudio;
+    public AudioSource failAudio;
 
     Collider _collider;
     public Collider theCollider
@@ -44,6 +46,7 @@ public class Target : MonoBehaviour
     public void Bind ()
     {
         visualization.gameObject.SetActive( false );
+        successAudio.Play();
     }
 
     public void Release ()
@@ -54,5 +57,6 @@ public class Target : MonoBehaviour
     public void Bounce ()
     {
         animator.SetTrigger( "Fail" );
+        failAudio.Play();
     }
 }

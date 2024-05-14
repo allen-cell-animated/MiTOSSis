@@ -7,17 +7,17 @@ using Oculus.Interaction;
 
 public class ThrowableCell : MonoBehaviour 
 {
-    [Header("Throwable Cell Settings")]
-
-    public float boundsRadius;
     public Vector3 rotationOffsetAtTarget;
     public Vector3 alignedMitosisPosition;
     public Vector3 alignedMitosisRotation;
     public float alignedMitosisScale;
+    public RandomSoundPlayer cellAudio;
+
+    [HideInInspector]
     public Target attachedTarget;
+
+    [HideInInspector]
     public float lastSpawnTime;
-    public bool isGrabbable = true;
-    public bool isGrabbed; // TODO
 
     MitosisGameManager _gameManager;
     MitosisGameManager gameManager
@@ -131,6 +131,10 @@ public class ThrowableCell : MonoBehaviour
             {
                 target.Bounce();
             }
+        }
+        else 
+        {
+            cellAudio.Play();
         }
     }
 

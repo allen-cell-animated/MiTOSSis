@@ -9,6 +9,8 @@ public class InterphaseCell : MonoBehaviour
     public Vector3 lobbyPosition;
     public Vector3 lobbyRotation;
     public float defaultScale;
+    public AudioSource highlightAudio;
+    public AudioSource selectAudio;
     
     bool inIsolationMode;
     CellStructure highlightedStructure;
@@ -165,6 +167,7 @@ public class InterphaseCell : MonoBehaviour
     public void SetCurrentStructure ()
     {
         VisualGuideManager.Instance.SetStucture(highlightedStructure.structureName);
+        selectAudio.Play();
     }
 
     public void TransitionToPlayMode (MitosisGameManager currentGameManager)
@@ -201,6 +204,7 @@ public class InterphaseCell : MonoBehaviour
         {
             structureLabel.SetLabel( _structure.structureName, _structure.nameWidth );
             SetHighlightedStructure( _structure );
+            highlightAudio.Play();
         }
     }
 

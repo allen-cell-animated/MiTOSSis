@@ -14,7 +14,12 @@ public class VisualGuideManager : MonoBehaviour
 {
     public VisualGuideData data;
     public VisualGuideGameMode currentMode = VisualGuideGameMode.Lobby;
+
+    [HideInInspector]
     public MitosisGameManager currentGameManager;
+
+    public AudioSource playAudio;
+    public AudioSource winAudio;
 
     MitosisGameManager successGameManager;
     string[] structureNames = { "Microtubules", "Mitochondria", "Endoplasmic Reticulum (ER)", "Golgi Apparatus" };
@@ -91,6 +96,7 @@ public class VisualGuideManager : MonoBehaviour
     {
         UIManager.Instance.Log( "Start game with " + structureName );
         currentMode = VisualGuideGameMode.Play;
+        playAudio.Play();
 
         UIManager.Instance.EnterPlayMode( data.structureData.Find( s => s.structureName == structureName ) );
 
@@ -116,20 +122,19 @@ public class VisualGuideManager : MonoBehaviour
     {
         currentMode = VisualGuideGameMode.Success;
 
+        winAudio.Play();
+
         UIManager.Instance.EnterSuccessMode( currentGameManager.currentStructureName, elapsedTime );
 
         AnimateCellSuccess( interphaseCell.gameObject );
         currentGameManager.AnimateCellsForSuccess();
+
+        currentGameManager.PlayTargetSuccessAudio();
+        
         successGameManager = CreateMitosisGameManager();
         if (successGameManager != null)
         {
             successGameManager.StartCoroutine(successGameManager.SpawnAllThrowables(structureNames));
-        }
-
-        currentStuctureIndex++;
-        if (currentStuctureIndex >= structureNames.Length)
-        {
-            currentStuctureIndex = 0;
         }
     }
 
@@ -162,6 +167,12 @@ public class VisualGuideManager : MonoBehaviour
     public void ReturnToLobby ()
     {
         currentMode = VisualGuideGameMode.Lobby;
+
+        currentStuctureIndex++;
+        if (currentStuctureIndex >= structureNames.Length)
+        {
+            currentStuctureIndex = 0;
+        }
 
         Cleanup();
 
