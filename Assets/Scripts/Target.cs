@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Target : MonoBehaviour 
 {
     public string goalName;
     public SpriteRenderer visualization;
-    public Text label;
+    public TMP_Text label;
     public RandomSoundPlayer successAudio;
     public AudioSource failAudio;
 

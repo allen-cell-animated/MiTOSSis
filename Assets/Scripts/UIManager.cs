@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class UIManager : MonoBehaviour 
 {
@@ -10,7 +11,7 @@ public class UIManager : MonoBehaviour
     public ProgressPanel progressPanel;
     public Leaderboard leaderboardUI;
     public GameObject lobbyPanel;
-    public Text nextStructureLabel;
+    public TMP_Text nextStructureLabel;
     public CountdownPanel countdownPanel;
     public Text debugText;
 
@@ -61,7 +62,7 @@ public class UIManager : MonoBehaviour
     {
         progressPanel.SetSelected( structureData.structureName, true );
         progressPanel.SetButtonLabel( false );
-        progressPanel.gameObject.SetActive(false);
+        progressPanel.gameObject.SetActive( false );
         collapsiblePanel.SetStructureContent( structureData );
         lobbyPanel.gameObject.SetActive( false );
         countdownPanel.gameObject.SetActive( true );

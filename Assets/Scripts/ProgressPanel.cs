@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ProgressPanel : MonoBehaviour 
 {
-    public Text time;
+    public TMP_Text time;
     public GameObject selectedER;
     public GameObject selectedGolgi;
     public GameObject selectedMTs;

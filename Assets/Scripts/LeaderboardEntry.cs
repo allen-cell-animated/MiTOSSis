@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class LeaderboardEntry : MonoBehaviour 
 {
-    public Text rank;
-    public Text playerName;
-    public Text time;
+    public TMP_Text rank;
+    public TMP_Text playerName;
+    public TMP_Text time;
 
     public void Populate (int _rank, string _playerName, float _timeSeconds)
     {

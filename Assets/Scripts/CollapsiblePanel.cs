@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollapsiblePanel : MonoBehaviour 
 {
@@ -10,9 +11,9 @@ public class CollapsiblePanel : MonoBehaviour
     public GameObject closeLabel;
     public Animator dataPanel;
     public Animator structurePanel;
-    public Text structureTitle;
+    public TMP_Text structureTitle;
     public Image structureImage;
-    public Text structureText;
+    public TMP_Text structureText;
 
     bool open;
     bool isDisplayingStructure;
