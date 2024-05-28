@@ -7153,8 +7153,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: MiTOSSis
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 77947f8a3f7f54074b87bedb865e0ae7, type: 2}
-  m_sharedMaterial: {fileID: 4291170575845711569, guid: 77947f8a3f7f54074b87bedb865e0ae7,
+  m_fontAsset: {fileID: 11400000, guid: cdb2b36f3279b4af791356780be34232, type: 2}
+  m_sharedMaterial: {fileID: 2666218958740826211, guid: cdb2b36f3279b4af791356780be34232,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
