@@ -134,7 +134,7 @@ public class VisualGuideManager : MonoBehaviour
         successGameManager = CreateMitosisGameManager();
         if (successGameManager != null)
         {
-            successGameManager.StartCoroutine(successGameManager.SpawnAllThrowables(structureNames));
+            successGameManager.StartCoroutine(successGameManager.SpawnSuccessThrowables(structureNames));
         }
     }
 
@@ -182,16 +182,6 @@ public class VisualGuideManager : MonoBehaviour
 
     void Cleanup ()
     {
-        // TODO
-        // foreach (OffsetInteractable offset in Resources.FindObjectsOfTypeAll(typeof(OffsetInteractable)) as OffsetInteractable[])
-        // {
-        //     offset.colliders.Clear();
-        //     if (offset.isSelected)
-        //     {
-        //         Destroy(offset.gameObject);
-        //     }
-        // }
-
         if (currentGameManager != null)
         {
             Destroy( currentGameManager.gameObject );

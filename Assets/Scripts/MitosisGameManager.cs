@@ -27,6 +27,7 @@ public class MitosisGameManager : MonoBehaviour
     float throwableBoundsRadius = 1.5f;
     float defaultTargetDistanceFromBounds = 1f;
     float targetDistanceFromCenter = 2f;
+    int nSuccessCells = 6;
 
     public float GetTargetDistanceFromCenter ()
     {
@@ -35,13 +36,14 @@ public class MitosisGameManager : MonoBehaviour
 
     public void StartGame (string _structureName, float timeBeforeCellDrop)
     {
+        Resources.UnloadUnusedAssets();
         correctlyPlacedThrowables = 0;
         currentStructureName = _structureName;
         throwableBoundsRadius = GetBoundaryRadius();
         targetDistanceFromCenter = throwableBoundsRadius + defaultTargetDistanceFromBounds;
         SpawnWalls();
         SpawnTargetsAndArrows();
-        StartCoroutine( SpawnThrowables( currentStructureName, timeBeforeCellDrop ) );
+        StartCoroutine( SpawnThrowables( currentStructureName, timeBeforeCellDrop, 2f ) );
         startTime = Time.time;
     }
 
@@ -68,22 +70,23 @@ public class MitosisGameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnAllThrowables (string[] structureNames)
+    public IEnumerator SpawnSuccessThrowables (string[] structureNames)
     {
         yield return new WaitForSeconds( 2f );
-            
+        
+        float spawnProbability = (float)nSuccessCells / (float)(structureNames.Length * throwableNames.Length);
         destroyWhenOutOfBounds = true;
         for (int i = 0; i < structureNames.Length; i++)
         {
-            StartCoroutine( SpawnThrowables( structureNames[i], i * structureNames.Length * waitBetweenThrowableSpawn ) );
+            StartCoroutine( SpawnThrowables( structureNames[i], i * structureNames.Length * waitBetweenThrowableSpawn, spawnProbability ) );
         }
 
-        yield return new WaitForSeconds( structureNames.Length * structureNames.Length * waitBetweenThrowableSpawn );
+        yield return new WaitForSeconds( structureNames.Length * throwableNames.Length * waitBetweenThrowableSpawn );
 
         throwableCells = GetComponentsInChildren<ThrowableCell>();
     }
 
-    IEnumerator SpawnThrowables (string structureName, float waitTime)
+    IEnumerator SpawnThrowables (string structureName, float waitTime, float spawnProbability)
     {
         yield return new WaitForSeconds( waitTime );
 
@@ -91,6 +94,11 @@ public class MitosisGameManager : MonoBehaviour
         throwableCells = new ThrowableCell[throwableNames.Length];
         for (int i = 0; i < throwableNames.Length; i++)
         {
+            if (Random.value > spawnProbability)
+            {
+                continue;
+            }
+
             prefab = Resources.Load( structureName + "/" + throwableNames[i] + "Cell" ) as GameObject;
             if (prefab == null)
             {
