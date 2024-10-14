@@ -107,7 +107,7 @@ public class MitosisGameManager : MonoBehaviour
             }
 
             throwableCells[i] = (Instantiate( prefab, transform ) as GameObject).GetComponent<ThrowableCell>();
-            throwableCells[i].outline.enabled = true;
+            // throwableCells[i].outline.enabled = true; TODO
             throwableCells[i].transform.position = transform.position + randomPositionInThrowableSpawnArea;
             throwableCells[i].transform.rotation = Random.rotation;
             throwableCells[i].transform.localScale = throwableSpawnScale * Vector3.one;
@@ -223,16 +223,17 @@ public class MitosisGameManager : MonoBehaviour
 
     Vector3[] GetBoundaryPoints ()
     {
-        bool configured = OVRManager.boundary.GetConfigured();
-        if (configured)
-        {
-            return OVRManager.boundary.GetGeometry( OVRBoundary.BoundaryType.PlayArea );
-        }
-        else
-        {
-            UIManager.Instance.Log( "WARNING: Boundary not configured." );
-            return null;
-        }
+        // bool configured = OVRManager.boundary.GetConfigured(); TODO
+        // if (configured)
+        // {
+        //     return OVRManager.boundary.GetGeometry( OVRBoundary.BoundaryType.PlayArea );
+        // }
+        // else
+        // {
+        //     UIManager.Instance.Log( "WARNING: Boundary not configured." );
+        //     return null;
+        // }
+        return null;
     }
 
     float GetBoundaryRadius ()
@@ -263,10 +264,10 @@ public class MitosisGameManager : MonoBehaviour
         if (correctlyPlacedThrowables >= throwableNames.Length)
         {
             VisualGuideManager.Instance.EnterSuccessMode( Time.time - startTime );
-            foreach (ThrowableCell throwableCell in throwableCells)
-            {
-                throwableCell.grabInteraction.SetActive( false );
-            }
+            // foreach (ThrowableCell throwableCell in throwableCells)
+            // {
+            //     throwableCell.grabInteraction.SetActive( false ); TODO
+            // }
         }
     }
 

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using cakeslice;
-using Oculus.Interaction;
 
 public class ThrowableCell : MonoBehaviour 
 {
@@ -84,31 +82,31 @@ public class ThrowableCell : MonoBehaviour
         }
     }
 
-    Outline _outline;
-    public Outline outline
-    {
-        get
-        {
-            if (_outline == null)
-            {
-                _outline = GetComponentInChildren<Outline>();
-            }
-            return _outline;
-        }
-    }
+    // Outline _outline; TODO
+    // public Outline outline
+    // {
+    //     get
+    //     {
+    //         if (_outline == null)
+    //         {
+    //             _outline = GetComponentInChildren<Outline>();
+    //         }
+    //         return _outline;
+    //     }
+    // }
 
-    GameObject _grabInteraction;
-    public GameObject grabInteraction
-    {
-        get
-        {
-            if (_grabInteraction == null)
-            {
-                _grabInteraction = GetComponentInChildren<Grabbable>().gameObject;
-            }
-            return _grabInteraction;
-        }
-    }
+    // GameObject _grabInteraction; TODO
+    // public GameObject grabInteraction
+    // {
+    //     get
+    //     {
+    //         if (_grabInteraction == null)
+    //         {
+    //             _grabInteraction = GetComponentInChildren<Grabbable>().gameObject;
+    //         }
+    //         return _grabInteraction;
+    //     }
+    // }
 
     public bool isMoving
     {
@@ -142,7 +140,7 @@ public class ThrowableCell : MonoBehaviour
     {
         if (gameManager != null)
         {
-            grabInteraction.SetActive( false );
+            // grabInteraction.SetActive( false ); TODO
             attachedTarget = target;
             attachedTarget.Bind();
 
@@ -173,7 +171,7 @@ public class ThrowableCell : MonoBehaviour
             gameManager.RemoveCorrectHit();
             attachedTarget.Release();
             attachedTarget = null;
-            grabInteraction.SetActive( true );
+            // grabInteraction.SetActive( true ); TODO
         }
 
         body.isKinematic = false;
