@@ -12,6 +12,7 @@ public class ProgressPanel : MonoBehaviour
     public GameObject selectedMitos;
     public GameObject backLabel;
     public GameObject nextLabel;
+    public LaserPointerButton button;
 
     Animator _animator;
     public Animator animator

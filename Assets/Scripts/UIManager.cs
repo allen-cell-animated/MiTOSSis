@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public ProgressPanel progressPanel;
     public Leaderboard leaderboardUI;
     public GameObject lobbyPanel;
+    public LaserPointerButton playButton;
     public TMP_Text nextStructureLabel;
     public CountdownPanel countdownPanel;
     public Text debugText;
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
     public void StartTimer ()
     {
         VisualGuideManager.Instance.currentGameManager.StartTimer();
+        progressPanel.button.Reset();
         progressPanel.gameObject.SetActive( true );
     }
 
@@ -87,6 +89,7 @@ public class UIManager : MonoBehaviour
         leaderboardUI.Close();
         progressPanel.animator.SetTrigger( "Close" );
         collapsiblePanel.SetDataContent();
+        playButton.Reset();
         lobbyPanel.gameObject.SetActive( true );
         lobbyPanel.GetComponent<Animator>().SetTrigger( "Open" );
 
